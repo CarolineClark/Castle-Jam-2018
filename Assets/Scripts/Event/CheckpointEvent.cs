@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine.Events;
 
-public class LevelEvent
+public class CheckpointEvent
 {
 
     public static void EmitCheckpoint(int level)

@@ -7,7 +7,8 @@ public class Checkpoint : MonoBehaviour {
     private Vector2 position;
     private BoxCollider2D boxCollider2D;
 
-    void Start () {
+    void Start () 
+    {
         boxCollider2D = GetComponent<BoxCollider2D>();
 	}
 
