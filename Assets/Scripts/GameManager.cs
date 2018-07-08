@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Collections;
+using System;
 
 public class GameManager : MonoBehaviour {
 
@@ -19,6 +21,12 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         // get player, checkpoint, set up events
+        CheckpointEvent.Listen(CheckpointHit);
+    }
+
+    private void CheckpointHit(Hashtable value)
+    {
+        Debug.Log("Hi the checkpoint was hit.");
     }
 
     private void StartGame()

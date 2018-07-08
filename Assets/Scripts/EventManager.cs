@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class HashtableEvent : UnityEvent<Hashtable> { }
 
@@ -77,4 +78,12 @@ public class EventManager : MonoBehaviour
         TriggerEvent(eventName, null);
     }
 
+    public static T ReadKeyFromHashtable<T>(Hashtable h, string key)
+    {
+        if (h != null && h.ContainsKey(key))
+        {
+            return (T)h[key];
+        }
+        throw new ArgumentException("You have fed the wrong hashtable into this event");
+    }
 }

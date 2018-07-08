@@ -14,8 +14,9 @@ public class Checkpoint : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == Constants.PLAYER_TAG) {
-            // add to checkpoint
+        if (collision.tag == Constants.PLAYER_TAG) 
+        {
+            CheckpointEvent.TriggerEvent(1);
         }
     }
 }

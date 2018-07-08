@@ -4,25 +4,25 @@ using UnityEngine.Events;
 public class CheckpointEvent
 {
 
-    public static void EmitCheckpoint(int level)
+    public static void TriggerEvent(int level)
     {
-        EventManager.TriggerEvent(Constants.LEVEL_EVENT_KEY, CreateLevelHashtable(level));
+        EventManager.TriggerEvent(Constants.CHECKPOINT_EVENT_KEY, CreateLevelHashtable(level));
     }
 
     public static void Listen(UnityAction<Hashtable> listener)
     {
-        EventManager.StartListening(Constants.LEVEL_EVENT_KEY, listener);
+        EventManager.StartListening(Constants.CHECKPOINT_EVENT_KEY, listener);
     }
 
     public static int ReadCheckpoint(Hashtable h)
     {
-        return EventUtils.ReadKeyFromHashtable<int>(h, Constants.LEVEL_EVENT_KEY);
+        return EventManager.ReadKeyFromHashtable<int>(h, Constants.CHECKPOINT_EVENT_KEY);
     }
 
     private static Hashtable CreateLevelHashtable(int level)
     {
         Hashtable h = new Hashtable();
-        h.Add(Constants.LEVEL_EVENT_KEY, level);
+        h.Add(Constants.CHECKPOINT_EVENT_KEY, level);
         return h;
     }
 }
