@@ -49,7 +49,8 @@ public class PlayerController : MonoBehaviour {
 
     private bool isGrounded() 
     {
-        return Physics2D.Raycast(transform.position, new Vector2(0, -1), 1.1f, layerMask);
+        //return Physics2D.Raycast(transform.position, new Vector2(0, -1), 1.1f, layerMask);
+        return CloseToZero(rb.velocity.y);
     }
 
     private void DeathByFallingObject(Hashtable h) 
