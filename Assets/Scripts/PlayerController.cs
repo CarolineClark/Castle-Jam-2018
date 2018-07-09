@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour {
         float x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
         rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
 
-        Debug.Log(isGrounded());
         if (isGrounded() && Input.GetButtonDown(Constants.JUMP)) {
             rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed);
         }

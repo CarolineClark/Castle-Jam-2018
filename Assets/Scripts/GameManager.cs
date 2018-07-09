@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour {
 
     private void CheckpointHit(Hashtable value)
     {
-        Debug.Log("Hi the checkpoint was hit.");
         checkpointPosition = CheckpointEvent.ReadCheckpoint(value);
     }
 
@@ -38,6 +37,5 @@ public class GameManager : MonoBehaviour {
     {
         playerController.SpawnPlayer(checkpointPosition);
         EventManager.TriggerEvent(Constants.RESTART_GAME);
-        Debug.Log("game started!");
     }
 }
