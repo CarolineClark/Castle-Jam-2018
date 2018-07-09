@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private bool CloseToZero(float num) {
-        return System.Math.Abs(num) < 0.1f;
+        return System.Math.Abs(num) < 0.01f;
     }
 
     private bool isGrounded() 

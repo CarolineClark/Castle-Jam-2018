@@ -5,6 +5,9 @@ using UnityEngine;
 public class FallingObjectParent : MonoBehaviour
 {
     public GameObject prefab;
+    public int numberToSpawn = 1;
+
+    private List<GameObject> spawned = new List<GameObject>();
 
     private static string CHILD_OBJECT_NAME = "SpawnPosition";
     Vector2 spawnPosition;
@@ -12,11 +15,22 @@ public class FallingObjectParent : MonoBehaviour
     void Start()
     {
         spawnPosition = transform.Find(CHILD_OBJECT_NAME).transform.position;
+        EventManager.StartListening(Constants.RESTART_GAME, DestroyInstantiated);
     }
 
     public void TriggerFall()
     {
-        GameObject gObj = Instantiate(prefab);
-        gObj.transform.position = spawnPosition;
+        if (spawned.Count < numberToSpawn) {
+            GameObject gObj = Instantiate(prefab);
+            spawned.Add(gObj);
+            gObj.transform.position = spawnPosition;    
+        }
+    }
+
+    private void DestroyInstantiated(Hashtable h)
+    {
+        foreach(GameObject spawn in spawned) {
+            Destroy(spawn);
+        }
     }
 }

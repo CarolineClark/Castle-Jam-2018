@@ -13,9 +13,14 @@ public class FallingObjectInstantiate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == Constants.PLAYER_TAG)
+        if (Moving() && collision.tag == Constants.PLAYER_TAG)
         {
             EventManager.TriggerEvent(Constants.FALLING_OBJECT_HIT_EVENT);
         }
+    }
+
+    private bool Moving()
+    {
+        return System.Math.Abs(rb.velocity.magnitude) > 0.01f;
     }
 }
