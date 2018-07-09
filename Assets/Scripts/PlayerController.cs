@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     private int layerMask;
     private Animator animator;
     private string RUNNING_ANIM = "Running";
+    private Vector3 offset = new Vector3(0, 0, -40);
 
     void Start () 
     {
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         UpdateImage(x);
+        Camera.main.transform.position = transform.position + offset;
     }
 
     private void UpdateImage (float inputX) {

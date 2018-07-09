@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingObject : MonoBehaviour {
-    private float gravityScale = 1;
+
+    public float gravityScale = 1;
 
     private Rigidbody2D rb;
     private Vector2 startPosition;
