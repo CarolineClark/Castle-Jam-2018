@@ -39,17 +39,18 @@ public class PlayerController : MonoBehaviour {
     private void UpdateImage (float inputX) {
         float xspeed = rb.velocity.x;
         spriteRenderer.flipX = xspeed < 0;
-        bool running = CloseToZero(xspeed) || CloseToZero(inputX);
+        bool running = !CloseToZero(xspeed) || !CloseToZero(inputX);
         animator.SetBool(RUNNING_ANIM, running);
     }
 
     private bool CloseToZero(float num) {
-        return System.Math.Abs(num) > 0.01f;
+        return System.Math.Abs(num) < 0.1f;
     }
 
     private bool isGrounded() 
     {
         //return Physics2D.Raycast(transform.position, new Vector2(0, -1), 1.1f, layerMask);
+        Debug.Log(rb.velocity.y);
         return CloseToZero(rb.velocity.y);
     }
 
