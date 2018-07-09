@@ -23,4 +23,6 @@ public class Constants
 
     public static int PLAYER_LAYER = 8;
     public static int GROUND_LAYER = 9;
+
+    public static string RESTART_GAME = "Restart game";
 }

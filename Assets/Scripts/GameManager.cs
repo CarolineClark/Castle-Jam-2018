@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour {
     private void StartGame(Hashtable h)
     {
         playerController.SpawnPlayer(checkpointPosition);
+        EventManager.TriggerEvent(Constants.RESTART_GAME);
         Debug.Log("game started!");
     }
 }
