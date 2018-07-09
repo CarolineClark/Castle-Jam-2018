@@ -16,4 +16,8 @@ public class Constants
 
     // events
     public static string CHECKPOINT_EVENT_KEY = "CheckpointEvent";
+    public static string JUMP = "Jump";
+
+    public static int PLAYER_LAYER = 8;
+    public static int GROUND_LAYER = 9;
 }
