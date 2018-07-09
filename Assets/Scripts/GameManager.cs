@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Collections;
+using System;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
+    private Vector2 checkpointPosition;
+    private PlayerController playerController;
 
     void Awake()
     {
@@ -19,25 +23,21 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         // get player, checkpoint, set up events
+        CheckpointEvent.Listen(CheckpointHit);
+        playerController = GameObject.FindGameObjectWithTag(Constants.PLAYER_TAG).GetComponent<PlayerController>();
+        EventManager.StartListening(Constants.PLAYER_DIED_EVENT, StartGame);
     }
 
-    private void StartGame()
+    private void CheckpointHit(Hashtable value)
     {
-        
+        Debug.Log("Hi the checkpoint was hit.");
+        checkpointPosition = CheckpointEvent.ReadCheckpoint(value);
     }
 
-    private void Die()
+    private void StartGame(Hashtable h)
     {
-        // show death screen, then restart from checkpoint. (optionally after button)
-    }
-
-    private void RestartFromCheckpoint()
-    {
-        
-    }
-
-    void Update () 
-    {
-        
+        playerController.SpawnPlayer(checkpointPosition);
+        EventManager.TriggerEvent(Constants.RESTART_GAME);
+        Debug.Log("game started!");
     }
 }
