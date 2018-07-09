@@ -21,7 +21,6 @@ public class FallingObject : MonoBehaviour {
     {
         if (collision.tag == Constants.PLAYER_TAG) 
         {
-            Debug.Log("player hit");
             EventManager.TriggerEvent(Constants.FALLING_OBJECT_HIT_EVENT);
         }
     }
