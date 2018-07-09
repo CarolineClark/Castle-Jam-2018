@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingObject : MonoBehaviour {
+    public float gravityScale = 1;
 
-    private BoxCollider2D collider2D;
+    private Rigidbody2D rb;
 
-	void Start () {
-        collider2D = GetComponent<BoxCollider2D>();
-	}
-	
-	void Update () {
-		
-	}
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    public void TriggerFall()
+    {
+        rb.gravityScale = gravityScale;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collision detected");
         if (collision.tag == Constants.PLAYER_TAG) 
         {
             Debug.Log("player hit");
