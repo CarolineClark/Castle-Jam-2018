@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingObjectParent : MonoBehaviour {
-    privtae static string CHILD_OBJECT_NAME = "Falling Object";
+    private static string CHILD_OBJECT_NAME = "Falling Object";
     FallingObject fallingObject;
 
 	// Use this for initialization
