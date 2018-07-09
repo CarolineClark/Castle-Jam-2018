@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    public int direction = RIGHT;
 
-    private float jumpSpeed = 10f;
+
+    private float jumpSpeed = 20f;
+    private float runningSpeed = 5f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private int layerMask;
     private Animator animator;
-
-    private const int RIGHT = 1;
-    private const int LEFT = -1;
     private string RUNNING_ANIM = "Running";
 
     void Start () 
@@ -22,22 +20,22 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         EventManager.StartListening(Constants.FALLING_OBJECT_HIT_EVENT, DeathByFallingObject);
-	}
+    }
 
     void FixedUpdate () 
     {
         float x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
-        float y = Input.GetAxis(Constants.VERTICAL_AXIS);
-        rb.velocity = new Vector2(x, y);
+        rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
 
+        Debug.Log(isGrounded());
         if (isGrounded() && Input.GetButtonDown(Constants.JUMP)) {
-            rb.velocity += new Vector2(0, jumpSpeed);
+            rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed);
         }
 
-        UpdateImage(x, y);
+        UpdateImage(x);
     }
 
-    private void UpdateImage (float inputX, float inputY) {
+    private void UpdateImage (float inputX) {
         float xspeed = rb.velocity.x;
         spriteRenderer.flipX = xspeed < 0;
         bool running = CloseToZero(xspeed) || CloseToZero(inputX);
@@ -50,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 
     private bool isGrounded() 
     {
-        return Physics2D.Raycast(transform.position, new Vector2(0, -1), 0.1f, layerMask);
+        return Physics2D.Raycast(transform.position, new Vector2(0, -1), 1.1f, layerMask);
     }
 
     private void DeathByFallingObject(Hashtable h) 

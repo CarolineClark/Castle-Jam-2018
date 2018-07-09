@@ -601,7 +601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2cacd464d4e4ca9bf7e43e2d52889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 1
 --- !u!61 &1391480991
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -764,7 +763,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4992337510460100, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.22
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 4992337510460100, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
       propertyPath: m_LocalPosition.z
@@ -792,7 +791,62 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1478425634520644, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
       propertyPath: m_Name
-      value: Player (1)
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 50759401368347666, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 50759401368347666, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50759401368347666, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 50759401368347666, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50759401368347666, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50759401368347666, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50759401368347666, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50759401368347666, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ace86774893de4827a68b39379ac5694, type: 2}
+    - target: {fileID: 50759401368347666, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95315527974542030, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95315527974542030, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_UpdateMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
