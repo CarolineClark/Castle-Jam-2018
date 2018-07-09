@@ -10,6 +10,12 @@ public class FallingTimingTrigger : MonoBehaviour {
     private Vector2 height = new Vector2(0, 5);
     private bool playerInCollider = false;
     private Vector2 playerPosition;
+    private List<GameObject> instantiatedPrefabs = new List<GameObject>();
+
+    private void Start()
+    {
+        EventManager.StartListening(Constants.RESTART_GAME, DestroyInstantiated);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,10 +49,20 @@ public class FallingTimingTrigger : MonoBehaviour {
                     break;
                 }
                 yield return new WaitForSeconds(time);
-                FallingObjectInstantiate boulder = Instantiate(prefab).GetComponent<FallingObjectInstantiate>();
+                GameObject gObj = Instantiate(prefab);
+                instantiatedPrefabs.Add(gObj);
+                FallingObjectInstantiate boulder = gObj.GetComponent<FallingObjectInstantiate>();
                 boulder.transform.position = playerPosition + height;
             }    
         }
+    }
+
+    private void DestroyInstantiated(Hashtable h)
+    {
+        playerInCollider = false;
+        foreach (GameObject gObj in instantiatedPrefabs) {
+            Destroy(gObj);
+        } 
     }
 
 }
