@@ -63,6 +63,7 @@ public class FallingTimingTrigger : MonoBehaviour {
         foreach (GameObject gObj in instantiatedPrefabs) {
             Destroy(gObj);
         } 
+        instantiatedPrefabs = new List<GameObject>();
     }
 
 }

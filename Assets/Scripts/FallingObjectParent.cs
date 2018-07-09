@@ -15,7 +15,7 @@ public class FallingObjectParent : MonoBehaviour
     void Start()
     {
         spawnPosition = transform.Find(CHILD_OBJECT_NAME).transform.position;
-        EventManager.StartListening(Constants.RESTART_GAME, DestroyInstantiated);
+        EventManager.StartListening(Constants.RESTART_GAME, Reset);
     }
 
     public void TriggerFall()
@@ -27,7 +27,12 @@ public class FallingObjectParent : MonoBehaviour
         }
     }
 
-    private void DestroyInstantiated(Hashtable h)
+    private void Reset(Hashtable h) {
+        DestroyInstantiated();
+        spawned = new List<GameObject>();
+    }
+
+    private void DestroyInstantiated()
     {
         foreach(GameObject spawn in spawned) {
             Destroy(spawn);
