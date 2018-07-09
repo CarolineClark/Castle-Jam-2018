@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour {
     {
         if (collision.tag == Constants.PLAYER_TAG) 
         {
-            CheckpointEvent.TriggerEvent(1);
+            CheckpointEvent.TriggerEvent(transform.position);
         }
     }
 }

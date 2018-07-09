@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
         layerMask = 1 << Constants.GROUND_LAYER;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
+        EventManager.StartListening(Constants.FALLING_OBJECT_HIT_EVENT, DeathByFallingObject);
 	}
 
     void FixedUpdate () 
@@ -28,8 +29,17 @@ public class PlayerController : MonoBehaviour {
 
     private bool isGrounded() 
     {
-        bool grounded = Physics2D.Raycast(transform.position, new Vector2(0, -1), 0.1f, layerMask);
-        Debug.Log(grounded);
-        return grounded;
+        return Physics2D.Raycast(transform.position, new Vector2(0, -1), 0.1f, layerMask);
+    }
+
+    private void DeathByFallingObject(Hashtable h) 
+    {
+        Debug.Log("show death animation");
+        EventManager.TriggerEvent(Constants.PLAYER_DIED_EVENT);
+    }
+
+    public void SpawnPlayer(Vector2 position)
+    {
+        transform.position = position;
     }
 }

@@ -7,6 +7,8 @@ using System;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
+    private Vector2 checkpointPosition;
+    private PlayerController playerController;
 
     void Awake()
     {
@@ -22,30 +24,19 @@ public class GameManager : MonoBehaviour {
     {
         // get player, checkpoint, set up events
         CheckpointEvent.Listen(CheckpointHit);
+        playerController = GameObject.FindGameObjectWithTag(Constants.PLAYER_TAG).GetComponent<PlayerController>();
+        EventManager.StartListening(Constants.PLAYER_DIED_EVENT, StartGame);
     }
 
     private void CheckpointHit(Hashtable value)
     {
         Debug.Log("Hi the checkpoint was hit.");
+        checkpointPosition = CheckpointEvent.ReadCheckpoint(value);
     }
 
-    private void StartGame()
+    private void StartGame(Hashtable h)
     {
-        
-    }
-
-    private void Die()
-    {
-        // show death screen, then restart from checkpoint. (optionally after button)
-    }
-
-    private void RestartFromCheckpoint()
-    {
-        
-    }
-
-    void Update () 
-    {
-        
+        playerController.SpawnPlayer(checkpointPosition);
+        Debug.Log("game started!");
     }
 }

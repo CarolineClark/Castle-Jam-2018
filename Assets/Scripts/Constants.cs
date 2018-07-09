@@ -16,6 +16,9 @@ public class Constants
 
     // events
     public static string CHECKPOINT_EVENT_KEY = "CheckpointEvent";
+    public static string FALLING_OBJECT_HIT_EVENT = "FallingObjectEvent";
+    public static string PLAYER_DIED_EVENT = "player died";
+
     public static string JUMP = "Jump";
 
     public static int PLAYER_LAYER = 8;
