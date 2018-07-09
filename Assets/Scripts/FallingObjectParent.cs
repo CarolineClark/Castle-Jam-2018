@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class FallingObjectParent : MonoBehaviour
 {
-    private static string CHILD_OBJECT_NAME = "Falling Object";
-    FallingObject fallingObject;
+    public GameObject prefab;
 
-    // Use this for initialization
+    private static string CHILD_OBJECT_NAME = "SpawnPosition";
+    Vector2 spawnPosition;
+
     void Start()
     {
-        fallingObject = transform.Find(CHILD_OBJECT_NAME).GetComponent<FallingObject>();
+        spawnPosition = transform.Find(CHILD_OBJECT_NAME).transform.position;
     }
 
     public void TriggerFall()
     {
-        fallingObject.TriggerFall();
+        GameObject gObj = Instantiate(prefab);
+        gObj.transform.position = spawnPosition;
     }
 }
