@@ -116,7 +116,6 @@ public class PlayerController : MonoBehaviour {
     {
         freezeInput = false;
         transform.position = position;
-        Debug.Log(position);
         rb.velocity = new Vector2 (0,0);
         // Reset animations
         if (animator.isInitialized) {
