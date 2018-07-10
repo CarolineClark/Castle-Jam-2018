@@ -10,6 +10,7 @@ public class BreakUpTrigger : MonoBehaviour {
             Debug.Log("Executing break up");
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             playerController.freezeInput = true;
+            playerController.isSurprised = true;
             Destroy(gameObject);
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     
     public bool freezeInput = false;
+    public bool isSurprised = false;
 
 
     private float jumpSpeed = 20f;
@@ -17,6 +18,9 @@ public class PlayerController : MonoBehaviour {
     private string GROUNDED_ANIM = "Grounded";
     private string DEAD_ANIM = "Dead";
     private Vector3 offset = new Vector3(0, 0, -40);
+    
+    private const string SURPRISE_OBJECT_NAME = "Surprise";
+    private GameObject surprise;
 
     void Start () 
     {
@@ -25,6 +29,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         EventManager.StartListening(Constants.FALLING_OBJECT_HIT_EVENT, DeathByFallingObject);
+        surprise = gameObject.transform.Find(SURPRISE_OBJECT_NAME).gameObject;
     }
 
     void FixedUpdate () 
@@ -42,7 +47,7 @@ public class PlayerController : MonoBehaviour {
         if (grounded && jumping) {
             rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed);
         }
-        
+
         UpdateImage(x, grounded);
         Camera.main.transform.position = transform.position + offset;
     }
@@ -53,6 +58,8 @@ public class PlayerController : MonoBehaviour {
         bool running = !CloseToZero(xspeed) || !CloseToZero(inputX);
         animator.SetBool(RUNNING_ANIM, running);
         animator.SetBool(GROUNDED_ANIM, grounded);
+
+        surprise.SetActive(isSurprised);
     }
 
     private bool CloseToZero(float num) {
