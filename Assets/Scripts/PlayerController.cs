@@ -45,10 +45,15 @@ public class PlayerController : MonoBehaviour {
 
     private void UpdateImage (float inputX, bool grounded) {
         float xspeed = rb.velocity.x;
+        float yspeed = rb.velocity.y;
         spriteRenderer.flipX = xspeed < 0;
         bool running = !CloseToZero(xspeed) || !CloseToZero(inputX);
         animator.SetBool(RUNNING_ANIM, running);
         animator.SetBool(GROUNDED_ANIM, grounded);
+
+        if (yspeed < -50) {
+            Kill();
+        }
     }
 
     private bool CloseToZero(float num) {
@@ -84,7 +89,10 @@ public class PlayerController : MonoBehaviour {
     public void SpawnPlayer(Vector2 position)
     {
         dead = false;
+        Debug.Log("before position");
         transform.position = position;
+        rb.velocity = new Vector2 (0,0);
+        Debug.Log("after changes");
         // Reset animations
         if (animator.isInitialized) {
             animator.Rebind();
