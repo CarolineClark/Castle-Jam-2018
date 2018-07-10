@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-
-
+    
     private float jumpSpeed = 20f;
     private float runningSpeed = 5f;
     private Rigidbody2D rb;
@@ -58,8 +57,17 @@ public class PlayerController : MonoBehaviour {
 
     private bool isGrounded() 
     {
-        //return Physics2D.Raycast(transform.position, new Vector2(0, -1), 1.1f, layerMask);
-        return CloseToZero(rb.velocity.y);
+        return CloseToZero(rb.velocity.y) || RaycastHitsGround();
+    }
+
+    private bool RaycastHitsGround() {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), 2.0f, layerMask);
+        if (hit.collider != null)
+        {
+            float angle = Vector2.Angle(hit.normal, new Vector2(0, 1));
+            return (Mathf.Abs(angle) < 45);
+        }
+        return false;
     }
 
     private void DeathByFallingObject(Hashtable h) 
