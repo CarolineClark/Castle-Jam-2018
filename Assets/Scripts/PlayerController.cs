@@ -107,11 +107,12 @@ public class PlayerController : MonoBehaviour {
     {
         freezeInput = false;
         transform.position = position;
+        Debug.Log(position);
         rb.velocity = new Vector2 (0,0);
-        Debug.Log("after changes");
         // Reset animations
         if (animator.isInitialized) {
-            animator.Rebind();
+            animator.SetBool(DEAD_ANIM, false);
+            animator.SetBool(GROUNDED_ANIM, true);
         }
     }
 }
