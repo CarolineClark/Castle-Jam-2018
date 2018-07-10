@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     private string GROUNDED_ANIM = "Grounded";
     private string DEAD_ANIM = "Dead";
     private Vector3 offset = new Vector3(0, 0, -40);
+    private bool dead = false;
 
     void Start () 
     {
@@ -27,6 +28,10 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate () 
     {
+        if (dead) {
+            return;
+        }
+
         float x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
         rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
 
@@ -59,12 +64,22 @@ public class PlayerController : MonoBehaviour {
 
     private void DeathByFallingObject(Hashtable h) 
     {
-        Debug.Log("show death animation");
+        Kill();
+    }
+
+    public void Kill() {
+        dead = true;
+        animator.SetBool(DEAD_ANIM, true);
         EventManager.TriggerEvent(Constants.PLAYER_DIED_EVENT);
     }
 
     public void SpawnPlayer(Vector2 position)
     {
+        dead = false;
         transform.position = position;
+        // Reset animations
+        if (animator.isInitialized) {
+            animator.Rebind();
+        }
     }
 }

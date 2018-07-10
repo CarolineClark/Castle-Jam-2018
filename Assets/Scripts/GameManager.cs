@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
         // get player, checkpoint, set up events
         CheckpointEvent.Listen(CheckpointHit);
         playerController = GameObject.FindGameObjectWithTag(Constants.PLAYER_TAG).GetComponent<PlayerController>();
-        EventManager.StartListening(Constants.PLAYER_DIED_EVENT, StartGame);
+        EventManager.StartListening(Constants.PLAYER_DIED_EVENT, OnPlayerDied);
     }
 
     private void CheckpointHit(Hashtable value)
@@ -33,6 +33,15 @@ public class GameManager : MonoBehaviour {
         checkpointPosition = CheckpointEvent.ReadCheckpoint(value);
     }
 
+    private void OnPlayerDied(Hashtable h) {
+        StartCoroutine(DelayStartGame());
+    }
+    
+    private IEnumerator DelayStartGame() {
+        yield return new WaitForSeconds(2.0f);
+        StartGame(null);
+    }
+     
     private void StartGame(Hashtable h)
     {
         playerController.SpawnPlayer(checkpointPosition);
