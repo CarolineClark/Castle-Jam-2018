@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour {
     public bool freezeInput = false;
     public bool isSurprised = false;
 
-
     private float jumpSpeed = 20f;
     private float runningSpeed = 7f;
     private Rigidbody2D rb;
@@ -20,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     private Vector3 offset = new Vector3(0, 0, -40);
     private const string SURPRISE_OBJECT_NAME = "Surprise";
     private GameObject surprise;
+    private const string HELD_FLOWERS_OBJECT_NAME = "Held Flowers";
+    private GameObject heldFlowers;
     private Dictionary<Pickup.PickupType, int> inventory = new Dictionary<Pickup.PickupType, int>();
 
     private void ResetInventory()
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         EventManager.StartListening(Constants.FALLING_OBJECT_HIT_EVENT, DeathByFallingObject);
         surprise = gameObject.transform.Find(SURPRISE_OBJECT_NAME).gameObject;
+        heldFlowers = gameObject.transform.Find(HELD_FLOWERS_OBJECT_NAME).gameObject;
         ResetInventory();
     }
 
@@ -80,6 +82,7 @@ public class PlayerController : MonoBehaviour {
             Kill();
         }
         surprise.SetActive(isSurprised);
+        heldFlowers.SetActive(inventory[Pickup.PickupType.Flowers] > 0);
     }
 
     private bool CloseToZero(float num) {
