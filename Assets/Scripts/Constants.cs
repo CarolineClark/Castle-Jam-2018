@@ -25,7 +25,4 @@ public class Constants
     public static int GROUND_LAYER = 9;
 
     public static string RESTART_GAME = "Restart game";
-
-    // tags
-    public static string PICKUP_TAG = "Pickup";
 }
