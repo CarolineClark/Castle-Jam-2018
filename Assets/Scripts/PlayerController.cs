@@ -18,9 +18,18 @@ public class PlayerController : MonoBehaviour {
     private string GROUNDED_ANIM = "Grounded";
     private string DEAD_ANIM = "Dead";
     private Vector3 offset = new Vector3(0, 0, -40);
-    
     private const string SURPRISE_OBJECT_NAME = "Surprise";
     private GameObject surprise;
+    private bool dead = false;
+    private Dictionary<Pickup.PickupType, int> inventory = new Dictionary<Pickup.PickupType, int>();
+
+    private void ResetInventory()
+    {
+        inventory = new Dictionary<Pickup.PickupType, int>
+        {
+            { Pickup.PickupType.Flowers, 0 }
+        };
+    }
 
     void Start () 
     {
@@ -30,6 +39,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         EventManager.StartListening(Constants.FALLING_OBJECT_HIT_EVENT, DeathByFallingObject);
         surprise = gameObject.transform.Find(SURPRISE_OBJECT_NAME).gameObject;
+        ResetInventory();
     }
 
     void FixedUpdate () 
@@ -113,5 +123,12 @@ public class PlayerController : MonoBehaviour {
         if (animator.isInitialized) {
             animator.Rebind();
         }
+    }
+
+    public void UpdateInventory(Pickup.PickupType pickup)
+    {
+        inventory[pickup]++;
+        Debug.Log(pickup);
+        Debug.Log(inventory[pickup]);
     }
 }
