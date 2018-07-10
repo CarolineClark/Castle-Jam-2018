@@ -54,7 +54,13 @@ public class PlayerController : MonoBehaviour {
 
     private void UpdateImage (float inputX, bool grounded) {
         float xspeed = rb.velocity.x;
-        spriteRenderer.flipX = xspeed < 0;
+
+        // Ensure that we only flip the sprite
+        // when the player is moving (xspeed != 0)
+        if (xspeed != 0) {
+            spriteRenderer.flipX = xspeed < 0;
+        }
+
         bool running = !CloseToZero(xspeed) || !CloseToZero(inputX);
         animator.SetBool(RUNNING_ANIM, running);
         animator.SetBool(GROUNDED_ANIM, grounded);
