@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     
+    public bool freezeInput = false;
+    public bool isSurprised = false;
+
+
     private float jumpSpeed = 20f;
     private float runningSpeed = 7f;
     private Rigidbody2D rb;
@@ -14,7 +18,9 @@ public class PlayerController : MonoBehaviour {
     private string GROUNDED_ANIM = "Grounded";
     private string DEAD_ANIM = "Dead";
     private Vector3 offset = new Vector3(0, 0, -40);
-    private bool dead = false;
+    
+    private const string SURPRISE_OBJECT_NAME = "Surprise";
+    private GameObject surprise;
 
     void Start () 
     {
@@ -23,19 +29,22 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         EventManager.StartListening(Constants.FALLING_OBJECT_HIT_EVENT, DeathByFallingObject);
+        surprise = gameObject.transform.Find(SURPRISE_OBJECT_NAME).gameObject;
     }
 
     void FixedUpdate () 
     {
-        if (dead) {
-            return;
+        float x = 0;
+        bool jumping = false;
+        bool grounded = isGrounded();
+
+        if (!freezeInput) {
+            x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
+            jumping = Input.GetButtonDown(Constants.JUMP);
         }
 
-        float x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
         rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
-
-        bool grounded = isGrounded();
-        if (grounded && Input.GetButtonDown(Constants.JUMP)) {
+        if (grounded && jumping) {
             rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed);
         }
 
@@ -47,6 +56,13 @@ public class PlayerController : MonoBehaviour {
         float xspeed = rb.velocity.x;
         float yspeed = rb.velocity.y;
         spriteRenderer.flipX = xspeed < 0;
+
+        // Ensure that we only flip the sprite
+        // when the player is moving (xspeed != 0)
+        if (xspeed != 0) {
+            spriteRenderer.flipX = xspeed < 0;
+        }
+
         bool running = !CloseToZero(xspeed) || !CloseToZero(inputX);
         animator.SetBool(RUNNING_ANIM, running);
         animator.SetBool(GROUNDED_ANIM, grounded);
@@ -54,6 +70,7 @@ public class PlayerController : MonoBehaviour {
         if (yspeed < -50) {
             Kill();
         }
+        surprise.SetActive(isSurprised);
     }
 
     private bool CloseToZero(float num) {
@@ -81,15 +98,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Kill() {
-        dead = true;
+        freezeInput = true;
         animator.SetBool(DEAD_ANIM, true);
         EventManager.TriggerEvent(Constants.PLAYER_DIED_EVENT);
     }
 
     public void SpawnPlayer(Vector2 position)
     {
-        dead = false;
-        Debug.Log("before position");
+        freezeInput = false;
         transform.position = position;
         rb.velocity = new Vector2 (0,0);
         Debug.Log("after changes");
