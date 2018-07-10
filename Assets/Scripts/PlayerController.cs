@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     
+    public bool freezeInput = false;
+
+
     private float jumpSpeed = 20f;
     private float runningSpeed = 7f;
     private Rigidbody2D rb;
@@ -14,7 +17,6 @@ public class PlayerController : MonoBehaviour {
     private string GROUNDED_ANIM = "Grounded";
     private string DEAD_ANIM = "Dead";
     private Vector3 offset = new Vector3(0, 0, -40);
-    private bool dead = false;
 
     void Start () 
     {
@@ -27,18 +29,20 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate () 
     {
-        if (dead) {
-            return;
+        float x = 0;
+        bool jumping = false;
+        bool grounded = isGrounded();
+
+        if (!freezeInput) {
+            x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
+            jumping = Input.GetButtonDown(Constants.JUMP);
         }
 
-        float x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
         rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
-
-        bool grounded = isGrounded();
-        if (grounded && Input.GetButtonDown(Constants.JUMP)) {
+        if (grounded && jumping) {
             rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed);
         }
-
+        
         UpdateImage(x, grounded);
         Camera.main.transform.position = transform.position + offset;
     }
@@ -76,14 +80,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Kill() {
-        dead = true;
+        freezeInput = true;
         animator.SetBool(DEAD_ANIM, true);
         EventManager.TriggerEvent(Constants.PLAYER_DIED_EVENT);
     }
 
     public void SpawnPlayer(Vector2 position)
     {
-        dead = false;
+        freezeInput = false;
         transform.position = position;
         // Reset animations
         if (animator.isInitialized) {
