@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour {
         surprise = gameObject.transform.Find(SURPRISE_OBJECT_NAME).gameObject;
         heldFlowers = gameObject.transform.Find(HELD_FLOWERS_OBJECT_NAME).gameObject;
         ResetInventory();
+        CameraController.Follow(gameObject);
     }
 
     void FixedUpdate () 
@@ -60,7 +61,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         UpdateImage(x, grounded);
-        Camera.main.transform.position = transform.position + offset;
     }
 
     private void UpdateImage (float inputX, bool grounded) {
