@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BreakUpTrigger : MonoBehaviour {
+    private PlayerController player;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == Constants.PLAYER_TAG)
         {
             Debug.Log("Executing break up");
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-            playerController.freezeInput = true;
-            playerController.isSurprised = true;
-            Destroy(gameObject);
+            player = collision.gameObject.GetComponent<PlayerController>();
+            player.freezeInput = true;
+            player.isSurprised = true;
+            StartCoroutine(DoBreakUp());
         }
+    }
+
+    private IEnumerator DoBreakUp() {
+        yield return new WaitForSeconds(3);
+
+        player.freezeInput = false;
+        player.isSurprised = false;
+        Destroy(gameObject);
     }
 }
