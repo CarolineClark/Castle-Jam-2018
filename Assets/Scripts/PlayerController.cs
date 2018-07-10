@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour {
     private Vector3 offset = new Vector3(0, 0, -40);
     private const string SURPRISE_OBJECT_NAME = "Surprise";
     private GameObject surprise;
-    private bool dead = false;
     private Dictionary<Pickup.PickupType, int> inventory = new Dictionary<Pickup.PickupType, int>();
 
     private void ResetInventory()
@@ -128,7 +127,6 @@ public class PlayerController : MonoBehaviour {
     public void UpdateInventory(Pickup.PickupType pickup)
     {
         inventory[pickup]++;
-        Debug.Log(pickup);
-        Debug.Log(inventory[pickup]);
+        Debug.Log("Picked up " + pickup + " - You now have " + inventory[pickup]);
     }
 }
