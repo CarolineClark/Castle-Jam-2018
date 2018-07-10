@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour {
     private int layerMask;
     private Animator animator;
     private string RUNNING_ANIM = "Running";
+    private string GROUNDED_ANIM = "Grounded";
+    private string DEAD_ANIM = "Dead";
     private Vector3 offset = new Vector3(0, 0, -40);
 
     void Start () 
@@ -28,19 +30,21 @@ public class PlayerController : MonoBehaviour {
         float x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
         rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
 
-        if (isGrounded() && Input.GetButtonDown(Constants.JUMP)) {
+        bool grounded = isGrounded();
+        if (grounded && Input.GetButtonDown(Constants.JUMP)) {
             rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed);
         }
 
-        UpdateImage(x);
+        UpdateImage(x, grounded);
         Camera.main.transform.position = transform.position + offset;
     }
 
-    private void UpdateImage (float inputX) {
+    private void UpdateImage (float inputX, bool grounded) {
         float xspeed = rb.velocity.x;
         spriteRenderer.flipX = xspeed < 0;
         bool running = !CloseToZero(xspeed) || !CloseToZero(inputX);
         animator.SetBool(RUNNING_ANIM, running);
+        animator.SetBool(GROUNDED_ANIM, grounded);
     }
 
     private bool CloseToZero(float num) {
