@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     private Vector2 checkpointPosition;
     private PlayerController playerController;
-
     void Awake()
     {
         if (instance == null)
@@ -39,11 +38,12 @@ public class GameManager : MonoBehaviour {
     
     private IEnumerator DelayStartGame() {
         yield return new WaitForSeconds(2.0f);
-        StartGame(null);
+        StartGame();
     }
      
-    private void StartGame(Hashtable h)
+    private void StartGame()
     {
+        StopAllCoroutines();
         playerController.SpawnPlayer(checkpointPosition);
         EventManager.TriggerEvent(Constants.RESTART_GAME);
     }

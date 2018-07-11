@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour {
     
     public bool freezeInput = false;
     public bool isSurprised = false;
+    public AudioClip footstepSound1;
+    public AudioClip footstepSound2;
+    public AudioClip footstepSound3;
 
     private float jumpSpeed = 20f;
     private float runningSpeed = 7f;
@@ -19,6 +22,8 @@ public class PlayerController : MonoBehaviour {
     private Vector3 offset = new Vector3(0, 0, -40);
     private const string SURPRISE_OBJECT_NAME = "Surprise";
     private GameObject surprise;
+    private bool hasDoubleJump = true;
+    private float defaultDistance = 0.01f;
     private const string HELD_FLOWERS_OBJECT_NAME = "Held Flowers";
     private GameObject heldFlowers;
     private Dictionary<Pickup.PickupType, int> inventory = new Dictionary<Pickup.PickupType, int>();
@@ -50,16 +55,29 @@ public class PlayerController : MonoBehaviour {
         bool jumping = false;
         bool grounded = isGrounded();
 
+        if (grounded) {
+            hasDoubleJump = true;
+        }
         if (!freezeInput) {
             x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
             jumping = Input.GetButtonDown(Constants.JUMP);
         }
 
-        rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
-        if (grounded && jumping) {
-            rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed);
+        bool movingHorizontally = x != 0;
+        bool noSoundPlaying = !SoundManager.instance.footstepSource.isPlaying;
+        if (grounded && movingHorizontally && noSoundPlaying)
+        {
+            SoundManager.instance.PlayFootstep(footstepSound1, footstepSound2, footstepSound3);
         }
 
+        rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
+        if (grounded && jumping || hasDoubleJump && jumping) {
+            if (!grounded) {
+                hasDoubleJump = false;
+            } 
+            float currentY = System.Math.Abs(rb.velocity.y) * 1;
+            rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed + currentY);
+        }
         UpdateImage(x, grounded);
     }
 
@@ -74,7 +92,7 @@ public class PlayerController : MonoBehaviour {
             spriteRenderer.flipX = xspeed < 0;
         }
 
-        bool running = !CloseToZero(xspeed) || !CloseToZero(inputX);
+        bool running = !CloseToZero(xspeed, defaultDistance) || !CloseToZero(inputX, defaultDistance);
         animator.SetBool(RUNNING_ANIM, running);
         animator.SetBool(GROUNDED_ANIM, grounded);
 
@@ -85,21 +103,20 @@ public class PlayerController : MonoBehaviour {
         heldFlowers.SetActive(inventory[Pickup.PickupType.Flowers] > 0);
     }
 
-    private bool CloseToZero(float num) {
-        return System.Math.Abs(num) < 0.01f;
+    private bool CloseToZero(float num, float epsilon) {
+        return System.Math.Abs(num) < epsilon;
     }
 
     private bool isGrounded() 
     {
-        return CloseToZero(rb.velocity.y) || RaycastHitsGround();
+        return CloseToZero(rb.velocity.y, defaultDistance) || RaycastHitsGround(45);
     }
-
-    private bool RaycastHitsGround() {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), 2.0f, layerMask);
+    private bool RaycastHitsGround(float maxAngle) {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), 3.0f, layerMask);
         if (hit.collider != null)
         {
             float angle = Vector2.Angle(hit.normal, new Vector2(0, 1));
-            return (Mathf.Abs(angle) < 45);
+            return (Mathf.Abs(angle) < maxAngle);
         }
         return false;
     }
@@ -119,7 +136,6 @@ public class PlayerController : MonoBehaviour {
     {
         freezeInput = false;
         transform.position = position;
-        Debug.Log(position);
         rb.velocity = new Vector2 (0,0);
         // Reset animations
         if (animator.isInitialized) {
