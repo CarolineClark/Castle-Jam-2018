@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour {
         if (grounded && movingHorizontally && noSoundPlaying)
         {
             SoundManager.instance.PlayFootstep(footstepSound1, footstepSound2, footstepSound3);
-            Debug.Log("=======================" + rb.velocity);
         }
 
         rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
@@ -96,6 +95,7 @@ public class PlayerController : MonoBehaviour {
         bool running = !CloseToZero(xspeed, defaultDistance) || !CloseToZero(inputX, defaultDistance);
         animator.SetBool(RUNNING_ANIM, running);
         animator.SetBool(GROUNDED_ANIM, grounded);
+
         if (yspeed < -50) {
             Kill();
         }
