@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478425634520644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.67, y: 1.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4642192119824750}
@@ -170,6 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeInput: 0
   isSurprised: 0
+  footstepSound1: {fileID: 8300000, guid: 1a4949192c8b04db58120f1e6ed35c12, type: 3}
+  footstepSound2: {fileID: 8300000, guid: d429d3f8fb6c84d29a30f8d3c3e992ab, type: 3}
+  footstepSound3: {fileID: 8300000, guid: e7f0fc235b2244f888c12963331d796a, type: 3}
 --- !u!212 &212212402957408576
 SpriteRenderer:
   m_ObjectHideFlags: 1
