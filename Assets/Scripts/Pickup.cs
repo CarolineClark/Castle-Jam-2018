@@ -9,9 +9,12 @@ public class Pickup : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        SoundManager.instance.PlaySingle(pickupSound);
-        gameObject.SetActive(false);
-        PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-        playerController.UpdateInventory(pickupType);
+        if (other.tag == Constants.PLAYER_TAG)
+        {
+            SoundManager.instance.PlaySingle(pickupSound);
+            gameObject.SetActive(false);
+            PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+            playerController.UpdateInventory(pickupType);
+        }
     }
 }
