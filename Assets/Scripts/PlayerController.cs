@@ -65,9 +65,9 @@ public class PlayerController : MonoBehaviour {
             if (!grounded) {
                 hasDoubleJump = false;
             } 
-            rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed);
+            float currentY = System.Math.Abs(rb.velocity.y) * 1;
+            rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed + currentY);
         }
-
         UpdateImage(x, grounded);
     }
 
