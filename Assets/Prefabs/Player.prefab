@@ -170,6 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeInput: 0
   isSurprised: 0
+  footstepSound1: {fileID: 8300000, guid: 1a4949192c8b04db58120f1e6ed35c12, type: 3}
+  footstepSound2: {fileID: 8300000, guid: d429d3f8fb6c84d29a30f8d3c3e992ab, type: 3}
+  footstepSound3: {fileID: 8300000, guid: e7f0fc235b2244f888c12963331d796a, type: 3}
 --- !u!212 &212212402957408576
 SpriteRenderer:
   m_ObjectHideFlags: 1

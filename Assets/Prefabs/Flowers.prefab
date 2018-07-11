@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114174168831358330}
   m_Layer: 0
   m_Name: Flowers
-  m_TagString: Pickup
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1294537063438326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.11, y: 0.54, z: 0}
+  m_LocalPosition: {x: 4.93, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,9 +76,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4dadf211f6b745b6b8165e07a79c3c6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   pickupType: 0
+  pickupSound: {fileID: 8300000, guid: d5eb830029c7b4988b0a4c3b3d9613c2, type: 3}
 --- !u!212 &212426374410744268
 SpriteRenderer:
   m_ObjectHideFlags: 1
