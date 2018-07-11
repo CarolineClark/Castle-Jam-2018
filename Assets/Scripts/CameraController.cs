@@ -35,6 +35,15 @@ public class CameraController : MonoBehaviour {
         }
     }
 
+    public static void Shake(float amount) {
+        Debug.Log("Camera::Shake::"+amount);
+        instance.shake = amount;
+    }
+
+    public static void StopShaking() {
+        Shake(0);
+    }
+
     public static void Target(Vector2 pos) {
         Debug.Log("Camera::Target::" + pos);
         instance.target = pos;
@@ -48,6 +57,9 @@ public class CameraController : MonoBehaviour {
     // will be updated automatically to the position of the followed object.
     public Vector2 target = new Vector2(0f, 0f);
 
+    public float shake = 0;
+    public float shakeFalloff = .96f;
+
     void Update () 
     {
         Debug.Log("Follow="+follow);
@@ -58,6 +70,16 @@ public class CameraController : MonoBehaviour {
         float currentz = transform.position.z;
         Vector2 current = new Vector2(transform.position.x, transform.position.y);
         Vector2 delta = (target - current) / 10f; 
-        transform.position = new Vector3(current.x + delta.x, current.y + delta.y, currentz);
+
+        Vector3 newPosition = new Vector3(current.x + delta.x, current.y + delta.y, currentz);
+        if (shake > 0) {
+            newPosition.x += Random.Range(-shake, shake);
+            newPosition.y += Random.Range(-shake, shake);
+            shake = shake * shakeFalloff;
+            if (shake < 0.01f) {
+                shake = 0;
+            }
+        }
+        transform.position = newPosition;
     }
 }
