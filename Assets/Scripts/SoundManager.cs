@@ -6,21 +6,32 @@ public class SoundManager : MonoBehaviour {
     public AudioSource footstepSource;
     public AudioSource fxSource;
     public AudioSource musicSource;
-    public static SoundManager instance = null;
+    private static SoundManager soundManager;
     private float lowPitchRange = .95f;
     private float highPitchRange = 1.05f;
 
-    private void EnsureSingleton()
+    public static SoundManager instance
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+        get
+        {
+            if (!soundManager)
+            {
+                soundManager = FindObjectOfType(typeof(SoundManager)) as SoundManager;
+                if (!soundManager)
+                {
+                    Debug.LogError("Need an active SoundManager on a GameObject in your scene");
+                }
+                else
+                {
+                    soundManager.Init();
+                }
+            }
+            return soundManager;
+        }
     }
 
-    private void Awake()
+    private void Init()
     {
-        EnsureSingleton();
         DontDestroyOnLoad(gameObject);
     }
 

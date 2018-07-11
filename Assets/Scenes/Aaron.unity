@@ -1655,16 +1655,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114126505881471926, guid: 6803313d7dec9480d9fca6b6ba2814db,
-        type: 2}
-      propertyPath: footstepSound1
-      value: 
-      objectReference: {fileID: 8300000, guid: 1a4949192c8b04db58120f1e6ed35c12, type: 3}
-    - target: {fileID: 114126505881471926, guid: 6803313d7dec9480d9fca6b6ba2814db,
-        type: 2}
-      propertyPath: footstepSound2
-      value: 
-      objectReference: {fileID: 8300000, guid: d429d3f8fb6c84d29a30f8d3c3e992ab, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
   m_IsPrefabParent: 0
