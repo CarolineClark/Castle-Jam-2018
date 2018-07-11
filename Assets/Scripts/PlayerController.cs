@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour {
     
     public bool freezeInput = false;
     public bool isSurprised = false;
+    public AudioClip footstepSound1;
+    public AudioClip footstepSound2;
+    public AudioClip footstepSound3;
 
     private float jumpSpeed = 20f;
     private float runningSpeed = 7f;
@@ -58,6 +61,14 @@ public class PlayerController : MonoBehaviour {
         if (!freezeInput) {
             x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
             jumping = Input.GetButtonDown(Constants.JUMP);
+        }
+
+        bool movingHorizontally = x != 0;
+        bool noSoundPlaying = !SoundManager.instance.footstepSource.isPlaying;
+        if (grounded && movingHorizontally && noSoundPlaying)
+        {
+            SoundManager.instance.PlayFootstep(footstepSound1, footstepSound2, footstepSound3);
+            Debug.Log("=======================" + rb.velocity);
         }
 
         rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
