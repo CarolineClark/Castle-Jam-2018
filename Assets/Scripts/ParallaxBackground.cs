@@ -5,8 +5,8 @@ using UnityEngine;
 public class ParallaxBackground : MonoBehaviour {
     
     private SpriteRenderer spriteRenderer;
-    float xParallax = 0.5f;
-    float yParallax = 1.0f;
+    public float xParallax = 0.5f;
+    public float yParallax = 1.0f;
 
     private Vector3 offset;
     private Vector2 previousPos;
@@ -16,33 +16,29 @@ public class ParallaxBackground : MonoBehaviour {
         offset = transform.position - Camera.main.transform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        bool isVisible = IsVisibleFrom(spriteRenderer, Camera.main);
-
-        if (!isVisible) {
-            AdjustBackground();
-        }
+        AdjustBackground();
     }
 
     void AdjustBackground() {
         Vector3 cameraPosition = Camera.main.transform.position;
         //Debug.Log("cameraPosition.x = " + cameraPosition.x + ", transform.position.x = " + transform.position.x + ", spriteRenderer.size.x = " + spriteRenderer.size.x);
-        float x = spriteRenderer.bounds.size.x;
+        float x = spriteRenderer.bounds.size.x/2;
         if (cameraPosition.x < transform.position.x)
         {
-            if (cameraPosition.x < transform.position.x - x)
+            if (cameraPosition.x < transform.position.x - x/2)
             {
                 //Debug.Log("offset changed");
-                offset = new Vector3(offset.x - 2 * x, offset.y, offset.z);
+                offset = new Vector3(offset.x - x, offset.y, offset.z);
             }
         }
         else if (cameraPosition.x > transform.position.x)
         {
-            if (cameraPosition.x > transform.position.x + x)
+            if (cameraPosition.x > transform.position.x + x/2)
             {
                 //Debug.Log("offset changed");
-                offset = new Vector3(offset.x + 2 * x, offset.y, offset.z);
+                offset = new Vector3(offset.x + x, offset.y, offset.z);
             }
         }
     }
