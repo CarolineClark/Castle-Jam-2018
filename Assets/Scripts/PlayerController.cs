@@ -69,13 +69,13 @@ public class PlayerController : MonoBehaviour {
         {
             SoundManager.instance.PlayFootstep(footstepSound1, footstepSound2, footstepSound3);
         }
-
+        float currentY = 0;
         rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
         if (grounded && jumping || hasDoubleJump && jumping) {
             if (!grounded) {
                 hasDoubleJump = false;
+                currentY = System.Math.Abs(rb.velocity.y) * 1;
             } 
-            float currentY = System.Math.Abs(rb.velocity.y) * 1;
             rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed + currentY);
         }
         UpdateImage(x, grounded);
