@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 684614060}
   - component: {fileID: 684614059}
   - component: {fileID: 684614058}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlatformLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 943262875}
   - component: {fileID: 943262874}
   - component: {fileID: 943262873}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlatformRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
