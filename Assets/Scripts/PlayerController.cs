@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     private string RUNNING_ANIM = "Running";
     private string GROUNDED_ANIM = "Grounded";
     private string DEAD_ANIM = "Dead";
+    private string SURPRISED_ANIM = "Surprised";
     private Vector3 offset = new Vector3(0, 0, -40);
     private const string SURPRISE_OBJECT_NAME = "Surprise";
     private GameObject surprise;
@@ -133,6 +134,7 @@ public class PlayerController : MonoBehaviour {
             Kill();
         }
         surprise.SetActive(isSurprised);
+        animator.SetBool(SURPRISED_ANIM, isSurprised);
         heldFlowers.SetActive(inventory[Pickup.PickupType.Flowers] > 0);
     }
 
