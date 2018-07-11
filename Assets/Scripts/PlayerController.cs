@@ -11,10 +11,11 @@ public class PlayerController : MonoBehaviour {
     public AudioClip footstepSound3;
 
     private float jumpSpeed = 20f;
+    private float jumpBuffer = 2.0f;
+    private float secondJumpSpeed = 15f;
     private float runningSpeed = 7f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private int layerMask;
     private Animator animator;
     private string RUNNING_ANIM = "Running";
     private string GROUNDED_ANIM = "Grounded";
@@ -23,10 +24,19 @@ public class PlayerController : MonoBehaviour {
     private const string SURPRISE_OBJECT_NAME = "Surprise";
     private GameObject surprise;
     private bool hasDoubleJump = true;
-    private float defaultDistance = 0.01f;
     private const string HELD_FLOWERS_OBJECT_NAME = "Held Flowers";
     private GameObject heldFlowers;
     private Dictionary<Pickup.PickupType, int> inventory = new Dictionary<Pickup.PickupType, int>();
+    private int numOfFramesGracePeriod = 6;
+    private List<GroundDetector> groundDetectors = new List<GroundDetector>();
+    private string groundDetectorLeft = "Sensor-left";
+    private string groundDetectorMiddle = "Sensor-middle";
+    private string groundDetectorRight = "Sensor-right";
+
+    private int counter = 0;
+    private bool groundedWithGracePeriod = false;
+
+    private static float EPSILON = 0.01f;
 
     private void ResetInventory()
     {
@@ -38,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start () 
     {
-        layerMask = 1 << Constants.GROUND_LAYER;
+        //layerMask = 1 << Constants.GROUND_LAYER;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -47,6 +57,14 @@ public class PlayerController : MonoBehaviour {
         heldFlowers = gameObject.transform.Find(HELD_FLOWERS_OBJECT_NAME).gameObject;
         ResetInventory();
         CameraController.Follow(gameObject);
+
+        groundDetectors.Add(findGroundDetectorByName(groundDetectorLeft));
+        groundDetectors.Add(findGroundDetectorByName(groundDetectorMiddle));
+        groundDetectors.Add(findGroundDetectorByName(groundDetectorRight));
+    }
+
+    private GroundDetector findGroundDetectorByName(string childName) {
+        return transform.Find(childName).gameObject.GetComponent<GroundDetector>();
     }
 
     void FixedUpdate () 
@@ -55,30 +73,45 @@ public class PlayerController : MonoBehaviour {
         bool jumping = false;
         bool grounded = isGrounded();
 
-        if (grounded) {
-            hasDoubleJump = true;
-        }
+        DecideIfGroundedWithGracePeriod(grounded);
+
         if (!freezeInput) {
             x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
             jumping = Input.GetButtonDown(Constants.JUMP);
         }
 
-        bool movingHorizontally = x != 0;
+        bool movingHorizontally = !CloseToZero(x, EPSILON);
         bool noSoundPlaying = !SoundManager.instance.footstepSource.isPlaying;
         if (grounded && movingHorizontally && noSoundPlaying)
         {
             SoundManager.instance.PlayFootstep(footstepSound1, footstepSound2, footstepSound3);
         }
-        float currentY = 0;
         rb.velocity = new Vector2(x * runningSpeed, rb.velocity.y);
-        if (grounded && jumping || hasDoubleJump && jumping) {
-            if (!grounded) {
-                hasDoubleJump = false;
-                currentY = System.Math.Abs(rb.velocity.y) * 1;
-            } 
-            rb.velocity = rb.velocity + new Vector2(0.0f, jumpSpeed + currentY);
-        }
+        SingleJump(groundedWithGracePeriod, jumping);
         UpdateImage(x, grounded);
+        counter += 1;
+    }
+
+    private bool DecideIfGroundedWithGracePeriod(bool grounded) {
+        // was grounded in the last grace period number of frames
+        if (grounded)
+        {
+            groundedWithGracePeriod = grounded;
+            counter = 0;
+        }
+        else if (counter > numOfFramesGracePeriod)
+        {
+            groundedWithGracePeriod = false;
+        }
+        return groundedWithGracePeriod;
+    }
+
+    private void SingleJump(bool grounded, bool jumping)
+    {
+        if (grounded && jumping)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+        }
     }
 
     private void UpdateImage (float inputX, bool grounded) {
@@ -87,12 +120,12 @@ public class PlayerController : MonoBehaviour {
         spriteRenderer.flipX = xspeed < 0;
 
         // Ensure that we only flip the sprite
-        // when the player is moving (xspeed != 0)
-        if (xspeed != 0) {
+        // when the player is moving (xspeed is not close to 0)
+        if (!CloseToZero(xspeed, EPSILON)) {
             spriteRenderer.flipX = xspeed < 0;
         }
 
-        bool running = !CloseToZero(xspeed, defaultDistance) || !CloseToZero(inputX, defaultDistance);
+        bool running = !CloseToZero(xspeed, EPSILON) || !CloseToZero(inputX, EPSILON);
         animator.SetBool(RUNNING_ANIM, running);
         animator.SetBool(GROUNDED_ANIM, grounded);
 
@@ -109,16 +142,11 @@ public class PlayerController : MonoBehaviour {
 
     private bool isGrounded() 
     {
-        return CloseToZero(rb.velocity.y, defaultDistance) || RaycastHitsGround(45);
-    }
-    private bool RaycastHitsGround(float maxAngle) {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), 3.0f, layerMask);
-        if (hit.collider != null)
-        {
-            float angle = Vector2.Angle(hit.normal, new Vector2(0, 1));
-            return (Mathf.Abs(angle) < maxAngle);
+        bool grounded = false;
+        foreach (GroundDetector detector in this.groundDetectors) {
+            grounded = grounded || detector.RaycastHitsGround();
         }
-        return false;
+        return grounded;
     }
 
     private void DeathByFallingObject(Hashtable h) 
