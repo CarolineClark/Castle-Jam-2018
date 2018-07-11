@@ -85,7 +85,6 @@ public class PlayerController : MonoBehaviour {
         bool running = !CloseToZero(xspeed, defaultDistance) || !CloseToZero(inputX, defaultDistance);
         animator.SetBool(RUNNING_ANIM, running);
         animator.SetBool(GROUNDED_ANIM, grounded);
-
         if (yspeed < -50) {
             Kill();
         }
