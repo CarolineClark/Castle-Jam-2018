@@ -2185,7 +2185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58dbf4429557940198792f36fc535608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  signLocation: {x: 61.85, y: 2}
+  signLocation: {x: 2, y: 1}
   fissureLeft: {fileID: 471912660}
   fissureRight: {fileID: 1325564106}
   platformLeftObject: {fileID: 1400882730}
