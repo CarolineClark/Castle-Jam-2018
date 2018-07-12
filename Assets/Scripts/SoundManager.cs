@@ -13,14 +13,14 @@ public class SoundManager : MonoBehaviour {
     public AudioClip altMusic1;
     public AudioClip altMusic2;
     public AudioClip altMusic3;
+    public float fadeTime = 5f;
 
     private AudioSource[] musicSources;
     private static SoundManager soundManager;
     private float lowPitchRange = .95f;
     private float highPitchRange = 1.05f;
-    private float musicFullVol = 0.65f;
+    private float musicFullVol = 1f;
     private float musicLowestVol = 0f;
-    private float defaultFadeTime = 5f;
     private int currentMusic = 0;
     private int nextMusic = 0;
     private bool fadingMusic = true;
@@ -97,8 +97,9 @@ public class SoundManager : MonoBehaviour {
         musicSources[0].volume = musicFullVol;
     }
 
-    public void SetMusic(int music)
+    public void SetMusic(int music, float newFadeTime)
     {
+        fadeTime = newFadeTime;
         nextMusic = music;
     }
 
@@ -107,10 +108,10 @@ public class SoundManager : MonoBehaviour {
         if (nextMusic == currentMusic) return;
 
         if (musicSources[currentMusic].volume > musicLowestVol)
-            musicSources[currentMusic].volume -= Time.deltaTime / defaultFadeTime;
+            musicSources[currentMusic].volume -= Time.deltaTime / fadeTime;
 
         if (musicSources[nextMusic].volume < musicFullVol)
-            musicSources[nextMusic].volume += Time.deltaTime / defaultFadeTime;
+            musicSources[nextMusic].volume += Time.deltaTime / fadeTime;
         else
             currentMusic = nextMusic;
     }
