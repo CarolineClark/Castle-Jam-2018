@@ -41,7 +41,7 @@ public class FallingObjectInstantiate : MonoBehaviour
 
     private bool Moving()
     {
-        return System.Math.Abs(rb.velocity.magnitude) > 0.01f;
+        return System.Math.Abs(rb.velocity.y) > 0.01f;
     }
 
     private bool isGrounded()
