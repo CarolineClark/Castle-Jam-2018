@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour {
     }
 
     private void OnPlayerDied(Hashtable h) {
-        Debug.Log("Game manager ack player died");
         StartCoroutine(DelayStartGame());
     }
     
@@ -43,7 +42,6 @@ public class GameManager : MonoBehaviour {
      
     private void StartGame()
     {
-        Debug.Log("starting new game");
         StopAllCoroutines();
         playerController.SpawnPlayer(checkpointPosition);
         EventManager.TriggerEvent(Constants.RESTART_GAME);

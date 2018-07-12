@@ -34,7 +34,6 @@ public class FallingObjectInstantiate : MonoBehaviour
     private void FixedUpdate()
     {
         if (isGrounded()) {
-            Debug.Log("shake!!! " + screenShake);
             CameraController.Shake(screenShake);
         }
     }
@@ -51,7 +50,6 @@ public class FallingObjectInstantiate : MonoBehaviour
         {
             grounded = grounded || detector.RaycastHitsGround();
         }
-        Debug.Log("grounded = " + grounded);
         return grounded;
     }
 }

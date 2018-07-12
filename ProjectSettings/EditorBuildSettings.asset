@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Main.unity
+    guid: 93602aa8cf8ba4da5866298a1cf8bdfa
+  - enabled: 1
+    path: Assets/Scenes/RocksFalling.unity
+    guid: 0e573d921b4cb4c7eb8f1d7626bfec53
   m_configObjects: {}
