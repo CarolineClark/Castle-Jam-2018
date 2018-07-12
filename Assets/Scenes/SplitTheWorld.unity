@@ -270,11 +270,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4992337510460100, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.9
+      value: -4.31
       objectReference: {fileID: 0}
     - target: {fileID: 4992337510460100, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.6585484
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 4992337510460100, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
       propertyPath: m_LocalPosition.z
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 684614060}
   - component: {fileID: 684614059}
   - component: {fileID: 684614058}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlatformLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 943262875}
   - component: {fileID: 943262874}
   - component: {fileID: 943262873}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlatformRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
