@@ -5,12 +5,19 @@ using UnityEngine;
 public class FallingTimingTrigger : MonoBehaviour {
 
     public GameObject prefab;
-    public List<float> fallingTimes;
+    public float minIntervalTime;
+    public float maxIntervalTime;
+    public float minHeight = 5;
+    public float maxHeight = 10;
+    public float minSpeed;
+    public float maxSpeed;
+    public float screenShake = 0.5f;
 
-    private Vector2 height = new Vector2(0, 5);
     private bool playerInCollider = false;
     private Vector2 playerPosition;
     private List<GameObject> instantiatedPrefabs = new List<GameObject>();
+
+    private Coroutine coroutine;
 
     private void Start()
     {
@@ -21,7 +28,7 @@ public class FallingTimingTrigger : MonoBehaviour {
     {
         if (collision.tag == Constants.PLAYER_TAG) {
             playerInCollider = true;
-            StartCoroutine(InstantiateFallingObject());
+            coroutine = StartCoroutine(InstantiateFallingObject());
         }
     }
 
@@ -43,23 +50,29 @@ public class FallingTimingTrigger : MonoBehaviour {
 
     IEnumerator InstantiateFallingObject() {
         while (playerInCollider) {
-            foreach (float time in fallingTimes)
-            {
-                if (!playerInCollider) {
-                    break;
-                }
-                yield return new WaitForSeconds(time);
-                GameObject gObj = Instantiate(prefab);
-                instantiatedPrefabs.Add(gObj);
-                FallingObjectInstantiate boulder = gObj.GetComponent<FallingObjectInstantiate>();
-                boulder.transform.position = playerPosition + height;
-            }    
+            float time = Random.Range(minIntervalTime, maxIntervalTime);
+            yield return new WaitForSeconds(time);
+            GameObject gObj = Instantiate(prefab);
+
+            FallingObjectInstantiate fallingObject = gObj.GetComponent<FallingObjectInstantiate>();
+            Debug.Log("setting screen shake to " + screenShake);
+            fallingObject.screenShake = screenShake;
+
+            instantiatedPrefabs.Add(gObj);
+            float height = Random.Range(minHeight, maxHeight);
+            gObj.transform.position = playerPosition + new Vector2(0, height);
+            Rigidbody2D rb = gObj.GetComponent<Rigidbody2D>();
+            float speed = Random.Range(minSpeed, maxSpeed);
+            rb.velocity = new Vector2(0, speed);
         }
     }
 
     private void DestroyInstantiated(Hashtable h)
     {
         playerInCollider = false;
+        if (coroutine != null) {
+            StopCoroutine(coroutine);   
+        }
         foreach (GameObject gObj in instantiatedPrefabs) {
             Destroy(gObj);
         } 

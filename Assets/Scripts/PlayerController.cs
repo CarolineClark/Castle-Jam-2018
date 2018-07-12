@@ -9,11 +9,11 @@ public class PlayerController : MonoBehaviour {
     public AudioClip footstepSound1;
     public AudioClip footstepSound2;
     public AudioClip footstepSound3;
+    public float runningSpeed = 7f;
 
     private float jumpSpeed = 20f;
     private float jumpBuffer = 2.0f;
     private float secondJumpSpeed = 15f;
-    private float runningSpeed = 7f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour {
     private Vector3 offset = new Vector3(0, 0, -40);
     private const string SURPRISE_OBJECT_NAME = "Surprise";
     private GameObject surprise;
-    private bool hasDoubleJump = true;
     private const string HELD_FLOWERS_OBJECT_NAME = "Held Flowers";
     private GameObject heldFlowers;
     private Dictionary<Pickup.PickupType, int> inventory = new Dictionary<Pickup.PickupType, int>();
@@ -131,6 +130,7 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool(GROUNDED_ANIM, grounded);
 
         if (yspeed < -50) {
+            Debug.Log("death by falling");
             Kill();
         }
         surprise.SetActive(isSurprised);
@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Kill() {
+        Debug.Log("death by death");
         freezeInput = true;
         animator.SetBool(DEAD_ANIM, true);
         EventManager.TriggerEvent(Constants.PLAYER_DIED_EVENT);
