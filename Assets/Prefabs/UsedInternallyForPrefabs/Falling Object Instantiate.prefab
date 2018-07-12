@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4825884824942628}
   - component: {fileID: 114658872990896054}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Sensor-right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 61082014315649316}
   - component: {fileID: 114447453194765168}
   - component: {fileID: 212362672845315492}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Falling Object Instantiate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4122698344535452}
   - component: {fileID: 114002466437649032}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Sensor-left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,8 +70,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1575163614968310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.68, y: -1.7, z: 0.17098379}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.68, y: -1.94, z: 0.17098379}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4585512018370360}
   m_RootOrder: 0
@@ -98,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1351081589928234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7, y: -1.8, z: 0.17098379}
+  m_LocalPosition: {x: 2.7, y: -2.01, z: 0.17098379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4585512018370360}

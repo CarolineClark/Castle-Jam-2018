@@ -8,6 +8,10 @@ public class GroundDetector : MonoBehaviour {
     public int layerMask = 1 << Constants.GROUND_LAYER;
     public int maxAngle = 60;
 
+    //static int layermask1 = 1 << 9;
+    //static int layermask2 = 1 << 10;
+    //static int finalmask = layermask1 | layermask2;
+
 	public bool RaycastHitsGround() {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), jumpBuffer, layerMask);
         if (hit.collider != null)

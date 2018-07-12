@@ -10,6 +10,7 @@ public class FallingObjectInstantiate : MonoBehaviour
     private List<GroundDetector> groundDetectors = new List<GroundDetector>();
     private string groundDetectorLeft = "Sensor-left";
     private string groundDetectorRight = "Sensor-right";
+    private bool shookCamera = false;
 
     private void Start()
     {
@@ -33,7 +34,8 @@ public class FallingObjectInstantiate : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isGrounded()) {
+        if (isGrounded() && !shookCamera) {
+            shookCamera = true;
             CameraController.Shake(screenShake);
         }
     }

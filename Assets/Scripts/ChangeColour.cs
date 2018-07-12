@@ -24,10 +24,11 @@ public class ChangeColour : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        LightenBg();
+        EventManager.StartListening(Constants.STOP_SIGNS_FALLING, LightenBg);
     }
 
-    public void LightenBg() {
+    public void LightenBg(Hashtable h) {
+        Debug.Log("LightenBg");
         StartCoroutine("LightenBgCoroutine");
     }
 

@@ -37,6 +37,9 @@ public class FallingTimingTrigger : MonoBehaviour {
         if (collision.tag == Constants.PLAYER_TAG)
         {
             playerInCollider = false;
+            if (coroutine != null) {
+                StopCoroutine(coroutine);    
+            }
         }
     }
 
@@ -55,7 +58,7 @@ public class FallingTimingTrigger : MonoBehaviour {
             GameObject gObj = Instantiate(prefab);
 
             FallingObjectInstantiate fallingObject = gObj.GetComponent<FallingObjectInstantiate>();
-            Debug.Log("setting screen shake to " + screenShake);
+            //Debug.Log("setting screen shake to " + screenShake);
             fallingObject.screenShake = screenShake;
 
             instantiatedPrefabs.Add(gObj);

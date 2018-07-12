@@ -41,6 +41,7 @@ public class CameraController : MonoBehaviour {
     }
 
     public static void StopShaking() {
+        Debug.Log("stop shaking");
         Shake(0);
     }
 
