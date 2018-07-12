@@ -17,7 +17,7 @@ public class SoundManager : MonoBehaviour {
     private static SoundManager soundManager;
     private float lowPitchRange = .95f;
     private float highPitchRange = 1.05f;
-    private float musicFullVol = 0.5f;
+    private float musicFullVol = 0.35f;
     private float musicLowestVol = 0f;
 
     public static SoundManager instance
