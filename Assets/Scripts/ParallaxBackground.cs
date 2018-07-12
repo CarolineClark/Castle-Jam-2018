@@ -15,7 +15,7 @@ public class ParallaxBackground : MonoBehaviour {
 
     void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        offset = transform.position - Camera.main.transform.position;
+        offset = transform.position;// - Camera.main.transform.position;
         if (yMatchX) {
             yParallax = xParallax;
         }
@@ -53,6 +53,6 @@ public class ParallaxBackground : MonoBehaviour {
     void LateUpdate() 
     {
         Vector2 pos = Camera.main.transform.position;
-        transform.position = new Vector3(pos.x * xParallax + offset.x, pos.y * yParallax + offset.y, transform.position.z);
+        transform.position = new Vector3((pos.x - offset.x) * xParallax + offset.x, (pos.y - offset.y) * yParallax + offset.y, transform.position.z);
     }
 }
