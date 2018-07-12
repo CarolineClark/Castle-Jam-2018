@@ -89,22 +89,22 @@ public class SoundManager : MonoBehaviour {
     public void SetMusic(int musicNumber)
     {
         startingMusicSource.volume = musicLowestVol;
+        altMusic1Source.volume = musicLowestVol;
+        altMusic2Source.volume = musicLowestVol;
+        altMusic3Source.volume = musicLowestVol;
+        if (musicNumber == 0) {
+            startingMusicSource.volume = musicFullVol;
+        }
         if (musicNumber == 1)
         {
             altMusic1Source.volume = musicFullVol;
-            altMusic2Source.volume = musicLowestVol;
-            altMusic3Source.volume = musicLowestVol;
         }
         else if (musicNumber == 2)
         {
-            altMusic1Source.volume = musicLowestVol;
             altMusic2Source.volume = musicFullVol;
-            altMusic3Source.volume = musicLowestVol;
         }
         else if (musicNumber == 3)
         {
-            altMusic1Source.volume = musicLowestVol;
-            altMusic2Source.volume = musicLowestVol;
             altMusic3Source.volume = musicFullVol;
         }
     }
