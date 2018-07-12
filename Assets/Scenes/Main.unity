@@ -918,6 +918,11 @@ Prefab:
       propertyPath: musicNumber
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114713170713975596, guid: 7efb761d814e148139e9cbc0647f30fb,
+        type: 2}
+      propertyPath: fadeTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7efb761d814e148139e9cbc0647f30fb, type: 2}
   m_IsPrefabParent: 0
@@ -1198,6 +1203,11 @@ Prefab:
     - target: {fileID: 4355750638390244, guid: 7efb761d814e148139e9cbc0647f30fb, type: 2}
       propertyPath: m_LocalScale.x
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114713170713975596, guid: 7efb761d814e148139e9cbc0647f30fb,
+        type: 2}
+      propertyPath: fadeTime
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7efb761d814e148139e9cbc0647f30fb, type: 2}
@@ -1482,7 +1492,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1238861405255012, guid: 7efb761d814e148139e9cbc0647f30fb, type: 2}
       propertyPath: m_Name
-      value: MusicTrigger - Slightly bad
+      value: MusicTrigger - Strangely quiet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114713170713975596, guid: 7efb761d814e148139e9cbc0647f30fb,
+        type: 2}
+      propertyPath: fadeTime
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7efb761d814e148139e9cbc0647f30fb, type: 2}
