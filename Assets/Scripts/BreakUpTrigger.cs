@@ -32,7 +32,8 @@ public class BreakUpTrigger : MonoBehaviour {
 
         // Reveal the 'I don't love you' sign
         player.isSurprised = false;
-        CameraController.Target(signLocation);
+        Vector3 worldSignLocation = transform.parent.TransformPoint(signLocation);
+        CameraController.Target(worldSignLocation);
 
         yield return new WaitForSeconds(3);
 
@@ -48,7 +49,7 @@ public class BreakUpTrigger : MonoBehaviour {
         // with the camera again
         float animationTime = 5f;
         var moveAmount = new Vector2(-40f, -4f);
-        var rotateAmount = 0.1745f;
+        float rotateAmount = 0.1745f;
         iTween.RotateBy(platformLeftObject, new Vector3(0f,0f,rotateAmount), animationTime);
         iTween.MoveBy(platformLeftObject, new Vector3(moveAmount.x, moveAmount.y, 0f), animationTime);
         iTween.RotateBy(platformRightObject, new Vector3(0f,0f,-rotateAmount), animationTime);

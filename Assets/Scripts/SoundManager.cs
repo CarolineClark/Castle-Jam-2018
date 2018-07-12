@@ -14,11 +14,16 @@ public class SoundManager : MonoBehaviour {
     public AudioClip altMusic2;
     public AudioClip altMusic3;
 
+    private AudioSource[] musicSources;
     private static SoundManager soundManager;
     private float lowPitchRange = .95f;
     private float highPitchRange = 1.05f;
-    private float musicFullVol = 0.5f;
+    private float musicFullVol = 0.65f;
     private float musicLowestVol = 0f;
+    private float defaultFadeTime = 5f;
+    private int currentMusic = 0;
+    private int nextMusic = 0;
+    private bool fadingMusic = true;
 
     public static SoundManager instance
     {
@@ -43,6 +48,12 @@ public class SoundManager : MonoBehaviour {
     private void Init()
     {
         DontDestroyOnLoad(gameObject);
+        musicSources = new AudioSource[] {
+            startingMusicSource,
+            altMusic1Source,
+            altMusic2Source,
+            altMusic3Source
+        };
         InitMusic();
     }
 
@@ -72,40 +83,40 @@ public class SoundManager : MonoBehaviour {
 
     private void InitMusic()
     {
-        startingMusicSource.volume = musicFullVol;
-        altMusic1Source.volume = musicLowestVol;
-        altMusic2Source.volume = musicLowestVol;
-        altMusic3Source.volume = musicLowestVol;
-        startingMusicSource.clip = startingMusic;
-        altMusic1Source.clip = altMusic1;
-        altMusic2Source.clip = altMusic2;
-        altMusic3Source.clip = altMusic3;
-        startingMusicSource.Play();
-        altMusic1Source.Play();
-        altMusic2Source.Play();
-        altMusic3Source.Play();
+        musicSources[0].clip = startingMusic;
+        musicSources[1].clip = altMusic1;
+        musicSources[2].clip = altMusic2;
+        musicSources[3].clip = altMusic3;
+
+        foreach (AudioSource source in musicSources)
+        {
+            source.volume = musicLowestVol;
+            source.Play();
+        }
+
+        musicSources[0].volume = musicFullVol;
     }
 
-    public void SetMusic(int musicNumber)
+    public void SetMusic(int music)
     {
-        startingMusicSource.volume = musicLowestVol;
-        if (musicNumber == 1)
-        {
-            altMusic1Source.volume = musicFullVol;
-            altMusic2Source.volume = musicLowestVol;
-            altMusic3Source.volume = musicLowestVol;
-        }
-        else if (musicNumber == 2)
-        {
-            altMusic1Source.volume = musicLowestVol;
-            altMusic2Source.volume = musicFullVol;
-            altMusic3Source.volume = musicLowestVol;
-        }
-        else if (musicNumber == 3)
-        {
-            altMusic1Source.volume = musicLowestVol;
-            altMusic2Source.volume = musicLowestVol;
-            altMusic3Source.volume = musicFullVol;
-        }
+        nextMusic = music;
+    }
+
+    private void FadeMusicTick()
+    {
+        if (nextMusic == currentMusic) return;
+
+        if (musicSources[currentMusic].volume > musicLowestVol)
+            musicSources[currentMusic].volume -= Time.deltaTime / defaultFadeTime;
+
+        if (musicSources[nextMusic].volume < musicFullVol)
+            musicSources[nextMusic].volume += Time.deltaTime / defaultFadeTime;
+        else
+            currentMusic = nextMusic;
+    }
+    
+    private void FixedUpdate()
+    {
+        FadeMusicTick();
     }
 }
