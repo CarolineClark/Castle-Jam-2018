@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 82865437642344272}
   - component: {fileID: 82192249155537888}
   - component: {fileID: 82533900201424488}
-  - component: {fileID: 114514150809926512}
   - component: {fileID: 82535245798489390}
   - component: {fileID: 82170080704536780}
   - component: {fileID: 82509851039824152}
+  - component: {fileID: 114514150809926512}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged

@@ -1441,6 +1441,21 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114126505881471926, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: footstepSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: bd0670f6a74324751938e2f913975cf2, type: 3}
+    - target: {fileID: 114126505881471926, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: footstepSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: 968c151031bd34cd199bbbbfe8c728c7, type: 3}
+    - target: {fileID: 114126505881471926, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: footstepSound3
+      value: 
+      objectReference: {fileID: 8300000, guid: 32748b961f2c844e09149806c5b8d7ee, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
   m_IsPrefabParent: 0
@@ -1736,7 +1751,7 @@ GameObject:
   - component: {fileID: 1400882733}
   - component: {fileID: 1400882732}
   - component: {fileID: 1400882731}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlatformLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2055,7 +2070,7 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.43}
   m_EdgeRadius: 0
   m_Points:
   - {x: -7.0819664, y: 1.8624406}
@@ -2170,7 +2185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58dbf4429557940198792f36fc535608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  signLocation: {x: 82.04, y: 7.78}
+  signLocation: {x: 61.85, y: 2}
   fissureLeft: {fileID: 471912660}
   fissureRight: {fileID: 1325564106}
   platformLeftObject: {fileID: 1400882730}
@@ -2230,7 +2245,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.28984165, y: -0.30673122}
+  m_Offset: {x: 0.28984165, y: -0.8}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2295,7 +2310,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1845892594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.3, y: 0.59, z: 0}
+  m_LocalPosition: {x: 21.75, y: -2.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1765343325}
@@ -2406,7 +2421,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5899973, y: -0.51303864}
+  m_Offset: {x: -0.5899973, y: -0.38}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2491,7 +2506,7 @@ GameObject:
   - component: {fileID: 1957111028}
   - component: {fileID: 1957111027}
   - component: {fileID: 1957111026}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlatformRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2608,7 +2623,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2030874034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75.9, y: 5.79, z: 0.18349709}
+  m_LocalPosition: {x: 61.85, y: 2.09, z: 0.18349709}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1400882733}
