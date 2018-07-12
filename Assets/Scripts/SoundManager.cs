@@ -9,10 +9,13 @@ public class SoundManager : MonoBehaviour {
     public AudioSource altMusic1Source;
     public AudioSource altMusic2Source;
     public AudioSource altMusic3Source;
+    public AudioSource altMusic4Source;
+
     public AudioClip startingMusic;
     public AudioClip altMusic1;
     public AudioClip altMusic2;
     public AudioClip altMusic3;
+    public AudioClip altMusic4;
     public float fadeTime = 5f;
 
     private AudioSource[] musicSources;
@@ -47,12 +50,14 @@ public class SoundManager : MonoBehaviour {
 
     private void Init()
     {
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         DontDestroyOnLoad(gameObject);
         musicSources = new AudioSource[] {
             startingMusicSource,
             altMusic1Source,
             altMusic2Source,
-            altMusic3Source
+            altMusic3Source,
+            altMusic4Source
         };
         InitMusic();
     }
@@ -87,6 +92,7 @@ public class SoundManager : MonoBehaviour {
         musicSources[1].clip = altMusic1;
         musicSources[2].clip = altMusic2;
         musicSources[3].clip = altMusic3;
+        musicSources[4].clip = altMusic4;
 
         foreach (AudioSource source in musicSources)
         {

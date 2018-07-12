@@ -16,12 +16,23 @@ public class FallingTimingTrigger : MonoBehaviour {
     private bool playerInCollider = false;
     private Vector2 playerPosition;
     private List<GameObject> instantiatedPrefabs = new List<GameObject>();
+    private BoxCollider2D collider2D;
 
     private Coroutine coroutine;
 
     private void Start()
     {
+        collider2D = GetComponent<BoxCollider2D>();
         EventManager.StartListening(Constants.RESTART_GAME, DestroyInstantiated);
+        EventManager.StartListening(Constants.STOP_SIGNS_FALLING, TurnOffCollider);
+    }
+
+    private void TurnOffCollider(Hashtable h) {
+        collider2D.enabled = false;
+        if (coroutine != null) {
+            StopCoroutine(coroutine);
+        }
+        EventManager.StopListening(Constants.RESTART_GAME, DestroyInstantiated);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

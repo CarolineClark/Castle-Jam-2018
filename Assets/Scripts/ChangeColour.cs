@@ -20,16 +20,16 @@ public class ChangeColour : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    // Use this for initialization
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Color color = Color.HSVToRGB(0.0f, 0, 0);
+        spriteRenderer.material.color = color;
         EventManager.StartListening(Constants.STOP_SIGNS_FALLING, LightenBg);
     }
 
     public void LightenBg(Hashtable h) {
-        Debug.Log("LightenBg");
-        StartCoroutine("LightenBgCoroutine");
+        StartCoroutine(LightenBgCoroutine());
     }
 
     private IEnumerator LightenBgCoroutine()
@@ -38,9 +38,7 @@ public class ChangeColour : MonoBehaviour
             float transition = timeSoFar / timeToComplete;
             float saturation = Mathf.Lerp(startSaturation, endSaturation, transition);
             float brightness = Mathf.Lerp(startBrightness, endBrightness, transition);
-            Color color = Color.HSVToRGB(0.0f, Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-            //Color color = Color.HSVToRGB(0.0f, saturation, brightness);
-            //spriteRenderer.material.color = new Color(0.5f, 0.5f, 0.5f);
+            Color color = Color.HSVToRGB(0.0f, saturation, brightness);
             spriteRenderer.material.color = color;
             timeSoFar += Time.deltaTime;
             yield return new WaitForSeconds(0.1f);
