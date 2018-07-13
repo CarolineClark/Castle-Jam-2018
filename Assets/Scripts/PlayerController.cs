@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
     public AudioClip footstepSound1;
     public AudioClip footstepSound2;
     public AudioClip footstepSound3;
+    public AudioClip jumpSound;
+    public AudioClip landJumpSound;
     public float runningSpeed = 7f;
 
     private float jumpSpeed = 20f;
@@ -111,6 +113,7 @@ public class PlayerController : MonoBehaviour {
         if (grounded && jumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            SoundManager.instance.PlaySingle(jumpSound);
         }
     }
 

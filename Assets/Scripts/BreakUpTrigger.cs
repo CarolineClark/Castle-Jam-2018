@@ -9,6 +9,7 @@ public class BreakUpTrigger : MonoBehaviour {
     public GameObject platformLeftObject;
     public GameObject platformRightObject;
     public float shakeCameraAmount = .6f;
+    public AudioClip splitWorldSound;
 
     private PlayerController player;
 
@@ -34,6 +35,7 @@ public class BreakUpTrigger : MonoBehaviour {
         player.isSurprised = false;
         Vector3 worldSignLocation = transform.parent.TransformPoint(signLocation);
         CameraController.Target(worldSignLocation);
+        SoundManager.instance.PlaySingle(splitWorldSound);
 
         yield return new WaitForSeconds(3);
 
