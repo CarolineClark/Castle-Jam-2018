@@ -32,4 +32,7 @@ public class Constants
     public static string SET_PLAYER_SPEED = "SetPlayerSpeed";
 
     public static string STORMY_SKY_TO_GREY = "StormySkyToGrey";
+
+    public static string END_GAME = "EndGame";
+    public static string CAMERA_CHANGE_VIEWPORT = "CameraChangeViewport";
 }
