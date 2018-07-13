@@ -10,7 +10,6 @@ public class ExitGameTrigger : MonoBehaviour {
             // send message to player that player should lose control
             EventManager.TriggerEvent(Constants.END_GAME);
 
-            // show UI element for credits
             Hashtable h2 = new Hashtable();
             h2.Add(Constants.CAMERA_CHANGE_VIEWPORT, 5.0f);
             EventManager.TriggerEvent(Constants.CAMERA_CHANGE_VIEWPORT, h2);
