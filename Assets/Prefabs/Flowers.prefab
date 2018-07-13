@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupType: 0
-  pickupSound: {fileID: 8300000, guid: d5eb830029c7b4988b0a4c3b3d9613c2, type: 3}
+  pickupToggle: 1
+  pickupSound: {fileID: 8300000, guid: f7ef609dbf9f7421db766a5355a2be1c, type: 3}
 --- !u!212 &212426374410744268
 SpriteRenderer:
   m_ObjectHideFlags: 1
