@@ -30,4 +30,6 @@ public class Constants
 
     public static string STOP_SIGNS_FALLING = "StopSignsFalling";
     public static string SET_PLAYER_SPEED = "SetPlayerSpeed";
+
+    public static string STORMY_SKY_TO_GREY = "StormySkyToGrey";
 }

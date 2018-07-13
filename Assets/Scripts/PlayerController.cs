@@ -40,12 +40,14 @@ public class PlayerController : MonoBehaviour {
     private string groundDetectorLeft = "Sensor-left";
     private string groundDetectorMiddle = "Sensor-middle";
     private string groundDetectorRight = "Sensor-right";
+    private int numberOfSignsToBury = 7;
 
     private int counter = 0;
     private bool groundedWithGracePeriod = false;
     private bool groundedInPrevFrame = true;
 
     private static float EPSILON = 0.01f;
+    private float timeCounter;
 
     private void ResetInventory()
     {
@@ -57,7 +59,6 @@ public class PlayerController : MonoBehaviour {
 
     void Start () 
     {
-        //layerMask = 1 << Constants.GROUND_LAYER;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -80,8 +81,18 @@ public class PlayerController : MonoBehaviour {
 
     private void SetPlayerSpeed(Hashtable h) {
         if (h.ContainsKey(Constants.SET_PLAYER_SPEED)) {
-            runningSpeed = (float)h[Constants.SET_PLAYER_SPEED];
+            timeCounter = 0f;
+            StartCoroutine(AdjustPlayerSpeed(runningSpeed, (float)h[Constants.SET_PLAYER_SPEED], 15f));
         }
+    }
+
+    private IEnumerator AdjustPlayerSpeed(float startPlayerSpeed, float endPlayerSpeed, float floatTimeTransition) {
+        while (timeCounter < floatTimeTransition) {
+            timeCounter += Time.deltaTime;
+            runningSpeed = Mathf.Lerp(startPlayerSpeed, endPlayerSpeed, timeCounter / floatTimeTransition);
+            yield return new WaitForFixedUpdate();
+        }
+        yield return new WaitForFixedUpdate();
     }
 
     // This function is called by an animation event in PlayerGetUp.anim
@@ -124,6 +135,10 @@ public class PlayerController : MonoBehaviour {
         SingleJump(groundedWithGracePeriod, jumping);
         UpdateImage(x, grounded);
         counter += 1;
+
+        if (IsBuriedBySigns()) {
+            Kill();
+        }
     }
 
     private bool DecideIfGroundedWithGracePeriod(bool grounded) {
@@ -152,12 +167,19 @@ public class PlayerController : MonoBehaviour {
     private void UpdateImage (float inputX, bool grounded) {
         float xspeed = rb.velocity.x;
         float yspeed = rb.velocity.y;
-        spriteRenderer.flipX = xspeed < 0;
 
         // Ensure that we only flip the sprite
         // when the player is moving (xspeed is not close to 0)
         if (!CloseToZero(xspeed, EPSILON)) {
-            spriteRenderer.flipX = xspeed < 0;
+            var movingLeft = xspeed < 0;
+            spriteRenderer.flipX = movingLeft;
+            
+            var fpos = heldFlowers.transform.localPosition;
+            var x = Mathf.Abs(fpos.x);
+            if (movingLeft) {
+                x = -x;
+            }
+            heldFlowers.transform.localPosition = new Vector3(x, fpos.y, fpos.z);
         }
 
         bool running = !CloseToZero(xspeed, EPSILON) || !CloseToZero(inputX, EPSILON);
@@ -168,7 +190,6 @@ public class PlayerController : MonoBehaviour {
             bool alreadyDying = animator.GetBool(DEAD_ANIM);
             if (!alreadyDying)
             {
-                Debug.Log("death by falling");
                 SoundManager.instance.PlayFx(deathByFallingSound);
                 Kill();
             }
@@ -198,7 +219,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Kill() {
-        Debug.Log("death by death");
         freezeInput = true;
         animator.SetBool(DEAD_ANIM, true);
         EventManager.TriggerEvent(Constants.PLAYER_DIED_EVENT);
@@ -220,5 +240,10 @@ public class PlayerController : MonoBehaviour {
     {
         inventory[pickup]++;
         Debug.Log("Picked up " + pickup + " - You now have " + inventory[pickup]);
+    }
+
+    private bool IsBuriedBySigns() {
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, new Vector2(0, 1), 100.0F, 1 << Constants.SIGN_LAYER);
+        return hits.Length > numberOfSignsToBury;
     }
 }
