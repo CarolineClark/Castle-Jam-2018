@@ -167,12 +167,19 @@ public class PlayerController : MonoBehaviour {
     private void UpdateImage (float inputX, bool grounded) {
         float xspeed = rb.velocity.x;
         float yspeed = rb.velocity.y;
-        spriteRenderer.flipX = xspeed < 0;
 
         // Ensure that we only flip the sprite
         // when the player is moving (xspeed is not close to 0)
         if (!CloseToZero(xspeed, EPSILON)) {
-            spriteRenderer.flipX = xspeed < 0;
+            var movingLeft = xspeed < 0;
+            spriteRenderer.flipX = movingLeft;
+            
+            var fpos = heldFlowers.transform.localPosition;
+            var x = Mathf.Abs(fpos.x);
+            if (movingLeft) {
+                x = -x;
+            }
+            heldFlowers.transform.localPosition = new Vector3(x, fpos.y, fpos.z);
         }
 
         bool running = !CloseToZero(xspeed, EPSILON) || !CloseToZero(inputX, EPSILON);
