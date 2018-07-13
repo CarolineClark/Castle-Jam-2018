@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip footstepSound2;
     public AudioClip footstepSound3;
     public AudioClip jumpSound;
+    public AudioClip jumpSound2;
     public AudioClip landJumpSound;
     public AudioClip deathByFallingSound;
     public AudioClip deathByFallingObjectSound;
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour {
         bool landedThisFrame = !groundedInPrevFrame && grounded;
         if (landedThisFrame)
         {
-            SoundManager.instance.PlaySingle(landJumpSound);
+            SoundManager.instance.PlayFx(landJumpSound);
         }
         groundedInPrevFrame = grounded;
 
@@ -131,7 +132,7 @@ public class PlayerController : MonoBehaviour {
         if (grounded && jumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            SoundManager.instance.PlaySingle(jumpSound);
+            SoundManager.instance.PlayFxRandom(jumpSound, jumpSound2);
         }
     }
 
@@ -155,7 +156,7 @@ public class PlayerController : MonoBehaviour {
             if (!alreadyDying)
             {
                 Debug.Log("death by falling");
-                SoundManager.instance.PlaySingle(deathByFallingSound);
+                SoundManager.instance.PlayFx(deathByFallingSound);
                 Kill();
             }
         }
@@ -179,7 +180,7 @@ public class PlayerController : MonoBehaviour {
 
     private void DeathByFallingObject(Hashtable h) 
     {
-        SoundManager.instance.PlaySingle(deathByFallingObjectSound);
+        SoundManager.instance.PlayFx(deathByFallingObjectSound);
         Kill();
     }
 

@@ -71,13 +71,13 @@ public class SoundManager : MonoBehaviour {
         footstepSource.Play();
     }
 
-    public void PlaySingle(AudioClip clip)
+    public void PlayFx(AudioClip clip)
     {
         fxSource.clip = clip;
         fxSource.Play();
     }
 
-    public void RandomizeSfx (params AudioClip[] clips)
+    public void PlayFxRandom (params AudioClip[] clips)
     {
         int randomIndex = Random.Range(0, clips.Length);
         float randomPitch = Random.Range(lowPitchRange, highPitchRange);
