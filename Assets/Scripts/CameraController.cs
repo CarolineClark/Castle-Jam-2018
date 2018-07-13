@@ -98,7 +98,7 @@ public class CameraController : MonoBehaviour {
         //Debug.Log("Follow="+follow);
         if (follow) {
             var followPos = follow.transform.position;
-            target = new Vector2(followPos.x, followPos.y);
+            target = new Vector2(followPos.x, followPos.y + 1);
         }
         float currentz = transform.position.z;
         Vector2 current = new Vector2(transform.position.x, transform.position.y);
