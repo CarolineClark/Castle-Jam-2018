@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Fade : MonoBehaviour {
 
@@ -31,6 +32,6 @@ public class Fade : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
         yield return new WaitForSeconds(2);
-        Application.Quit();
+        SceneManager.LoadScene("Title Screen", LoadSceneMode.Single);
     }
 }
