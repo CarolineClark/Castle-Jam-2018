@@ -3299,7 +3299,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4355750638390244, guid: 7efb761d814e148139e9cbc0647f30fb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 84.6
+      value: 74.4
       objectReference: {fileID: 0}
     - target: {fileID: 4355750638390244, guid: 7efb761d814e148139e9cbc0647f30fb, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3725,6 +3725,11 @@ Prefab:
       propertyPath: footstepSound3
       value: 
       objectReference: {fileID: 8300000, guid: 32748b961f2c844e09149806c5b8d7ee, type: 3}
+    - target: {fileID: 212293266098750326, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
   m_IsPrefabParent: 0
@@ -4692,7 +4697,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4410961142232494, guid: 58e0059a57124438ba187eee119e831e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -20.72
+      value: -26.23
       objectReference: {fileID: 0}
     - target: {fileID: 4410961142232494, guid: 58e0059a57124438ba187eee119e831e, type: 2}
       propertyPath: m_LocalPosition.y
