@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114243839964307320, guid: f10f6921c600645a688b9f4423714d80,
+        type: 2}
+      propertyPath: splitWorldSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5c6ba298f6cf142318be89eeb74ceece, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f10f6921c600645a688b9f4423714d80, type: 2}
   m_IsPrefabParent: 0
