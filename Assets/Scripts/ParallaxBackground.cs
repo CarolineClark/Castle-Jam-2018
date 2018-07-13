@@ -15,44 +15,39 @@ public class ParallaxBackground : MonoBehaviour {
 
     void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        offset = transform.position;// - Camera.main.transform.position;
+        offset = transform.position;
         if (yMatchX) {
             yParallax = xParallax;
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (wrapOn) {
-            AdjustBackground();   
-        }
-    }
-
     void AdjustBackground() {
-        Vector3 cameraPosition = Camera.main.transform.position;
-        //Debug.Log("cameraPosition.x = " + cameraPosition.x + ", transform.position.x = " + transform.position.x + ", spriteRenderer.size.x = " + spriteRenderer.size.x);
-        float x = spriteRenderer.bounds.size.x/2;
-        if (cameraPosition.x < transform.position.x)
-        {
-            if (cameraPosition.x < transform.position.x - x/2)
-            {
-                //Debug.Log("offset changed");
-                offset = new Vector3(offset.x - x, offset.y, offset.z);
-            }
+        Vector3 cameraPos = Camera.main.transform.position;
+        var img = transform.position;
+        var delta = new Vector2(cameraPos.x - img.x, cameraPos.y - img.y);
+        float halfWidth = spriteRenderer.bounds.size.x * .5f;
+        float quarterWidth = halfWidth * .5f;
+        float moveWidth = halfWidth;
+        if (xParallax != 0) {
+            moveWidth = halfWidth / xParallax;
         }
-        else if (cameraPosition.x > transform.position.x)
-        {
-            if (cameraPosition.x > transform.position.x + x/2)
-            {
-                //Debug.Log("offset changed");
-                offset = new Vector3(offset.x + x, offset.y, offset.z);
-            }
+        if (delta.x > quarterWidth) {
+            offset = new Vector3(offset.x + moveWidth, offset.y, offset.z);
+        } else if (delta.x < -quarterWidth) {
+            offset = new Vector3(offset.x - moveWidth, offset.y, offset.z);
         }
     }
 
     void LateUpdate() 
     {
-        Vector2 pos = Camera.main.transform.position;
-        transform.position = new Vector3((pos.x - offset.x) * xParallax + offset.x, (pos.y - offset.y) * yParallax + offset.y, transform.position.z);
+        Vector2 cameraPos = Camera.main.transform.position;
+        Vector2 delta;
+
+        if (wrapOn) {
+            AdjustBackground();
+        }
+
+        delta = new Vector2(cameraPos.x - offset.x, cameraPos.y - offset.y);
+        transform.position = new Vector3(delta.x * xParallax + offset.x, delta.y * yParallax + offset.y, transform.position.z);
     }
 }
