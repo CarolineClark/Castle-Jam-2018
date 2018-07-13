@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour {
     public enum PickupType { Flowers };
     public PickupType pickupType;
-    public bool pickupToggle;
+    public bool pickupToggle = true;
     public AudioClip pickupSound;
 
     private void OnTriggerEnter2D(Collider2D other)
