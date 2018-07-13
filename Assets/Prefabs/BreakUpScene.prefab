@@ -674,6 +674,7 @@ MonoBehaviour:
   platformLeftObject: {fileID: 1987775989487916}
   platformRightObject: {fileID: 1933782333842328}
   shakeCameraAmount: 1
+  splitWorldSound: {fileID: 8300000, guid: 5c6ba298f6cf142318be89eeb74ceece, type: 3}
 --- !u!212 &212002928781132216
 SpriteRenderer:
   m_ObjectHideFlags: 1
