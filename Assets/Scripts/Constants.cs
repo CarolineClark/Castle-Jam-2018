@@ -29,4 +29,5 @@ public class Constants
     public static string RESTART_GAME = "Restart game";
 
     public static string STOP_SIGNS_FALLING = "StopSignsFalling";
+    public static string SET_PLAYER_SPEED = "SetPlayerSpeed";
 }

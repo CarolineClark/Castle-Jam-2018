@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         EventManager.StartListening(Constants.FALLING_OBJECT_HIT_EVENT, DeathByFallingObject);
+        EventManager.StartListening(Constants.SET_PLAYER_SPEED, SetPlayerSpeed);
         surprise = gameObject.transform.Find(SURPRISE_OBJECT_NAME).gameObject;
         heldFlowers = gameObject.transform.Find(HELD_FLOWERS_OBJECT_NAME).gameObject;
         ResetInventory();
@@ -74,6 +75,12 @@ public class PlayerController : MonoBehaviour {
         if (startFallenDown) {
             animator.Play(GET_UP_ANIM_STATE);
             freezeInput = true;
+        }
+    }
+
+    private void SetPlayerSpeed(Hashtable h) {
+        if (h.ContainsKey(Constants.SET_PLAYER_SPEED)) {
+            runningSpeed = (float)h[Constants.SET_PLAYER_SPEED];
         }
     }
 
