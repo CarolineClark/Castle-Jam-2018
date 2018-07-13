@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     
+    public bool startFallenDown = false;
     public bool freezeInput = false;
     public bool isSurprised = false;
     public AudioClip footstepSound1;
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour {
     private string GROUNDED_ANIM = "Grounded";
     private string DEAD_ANIM = "Dead";
     private string SURPRISED_ANIM = "Surprised";
+    private string IDLE_ANIM_STATE = "PlayerIdle";
+    private string GET_UP_ANIM_STATE = "PlayerGetUp";
     private Vector3 offset = new Vector3(0, 0, -40);
     private const string SURPRISE_OBJECT_NAME = "Surprise";
     private GameObject surprise;
@@ -66,6 +69,11 @@ public class PlayerController : MonoBehaviour {
         groundDetectors.Add(findGroundDetectorByName(groundDetectorLeft));
         groundDetectors.Add(findGroundDetectorByName(groundDetectorMiddle));
         groundDetectors.Add(findGroundDetectorByName(groundDetectorRight));
+
+        if (startFallenDown) {
+            animator.Play(GET_UP_ANIM_STATE);
+            // TODO freeze input until animation completes
+        }
     }
 
     private GroundDetector findGroundDetectorByName(string childName) {
