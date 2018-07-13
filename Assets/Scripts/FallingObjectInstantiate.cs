@@ -5,6 +5,8 @@ using UnityEngine;
 public class FallingObjectInstantiate : MonoBehaviour
 {
     public float screenShake;
+    public AudioClip landingSound1;
+    public AudioClip landingSound2;
     private Rigidbody2D rb;
 
     private List<GroundDetector> groundDetectors = new List<GroundDetector>();
@@ -42,6 +44,7 @@ public class FallingObjectInstantiate : MonoBehaviour
         if (isGrounded() && !shookCamera) {
             shookCamera = true;
             CameraController.Shake(screenShake);
+            SoundManager.instance.PlaySignCrashRandom(landingSound1, landingSound2);
         }
     }
 

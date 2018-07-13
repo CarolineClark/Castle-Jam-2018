@@ -14,7 +14,7 @@ public class Pickup : MonoBehaviour {
             SoundManager.instance.PlayFx(pickupSound);
             gameObject.SetActive(false);
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-            playerController.UpdateInventory(pickupType);   
+            playerController.UpdateInventory(pickupType);
         }
     }
 }

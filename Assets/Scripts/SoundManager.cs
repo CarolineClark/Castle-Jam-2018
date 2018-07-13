@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour {
     public AudioSource altMusic2Source;
     public AudioSource altMusic3Source;
     public AudioSource altMusic4Source;
+    public AudioSource signCrashSource;
 
     public AudioClip startingMusic;
     public AudioClip altMusic1;
@@ -84,6 +85,15 @@ public class SoundManager : MonoBehaviour {
         fxSource.pitch = randomPitch;
         fxSource.clip = clips[randomIndex];
         fxSource.Play();
+    }
+
+    public void PlaySignCrashRandom (params AudioClip[] clips)
+    {
+        int randomIndex = Random.Range(0, clips.Length);
+        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
+        signCrashSource.pitch = randomPitch;
+        signCrashSource.clip = clips[randomIndex];
+        signCrashSource.Play();
     }
 
     private void InitMusic()
