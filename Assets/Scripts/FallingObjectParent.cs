@@ -6,6 +6,7 @@ public class FallingObjectParent : MonoBehaviour
 {
     public GameObject prefab;
     public int numberToSpawn = 1;
+    public float screenShake = 0.2f;
 
     private List<GameObject> spawned = new List<GameObject>();
 
@@ -22,8 +23,9 @@ public class FallingObjectParent : MonoBehaviour
     {
         if (spawned.Count < numberToSpawn) {
             GameObject gObj = Instantiate(prefab);
+            gObj.GetComponent<FallingObjectInstantiate>().screenShake = screenShake;
             spawned.Add(gObj);
-            gObj.transform.position = spawnPosition;    
+            gObj.transform.position = spawnPosition;
         }
     }
 

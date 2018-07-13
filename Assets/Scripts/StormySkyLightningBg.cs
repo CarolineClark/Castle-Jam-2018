@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class StormySkyLightningBg : MonoBehaviour {
     private float minLull = 5f;
-    private float maxLull = 10f;
+    private float maxLull = 1f;
     private float minFlash = 0f;
     private float maxFlash = 0.5f;
     private float minOpacity = 0f;
     private float midOpacity = 0.2f;
     private float maxOpacity = 0.7f;
-    private float minFade = 0.1f;
-    private float maxFade = 0.25f;
+    private float minFade = 0.05f;
+    private float maxFade = 0.15f;
     private GameObject lightningObj;
 
     private void Start()

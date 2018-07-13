@@ -3452,6 +3452,11 @@ Prefab:
       propertyPath: footstepSound3
       value: 
       objectReference: {fileID: 8300000, guid: 32748b961f2c844e09149806c5b8d7ee, type: 3}
+    - target: {fileID: 114126505881471926, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: runningSpeed
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
   m_IsPrefabParent: 0
@@ -4666,7 +4671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed07287aee2d4d4a9cf5fb0ee0d7a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leavingSceneName: Main
+  leavingSceneName: Main-long
   sceneToGoTo: RocksFalling
 --- !u!61 &1760242904
 BoxCollider2D:
