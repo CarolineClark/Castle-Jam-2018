@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class FallingTimingTrigger : MonoBehaviour {
 
-    public GameObject prefab;
+    public List<GameObject> prefabs;
     public float minIntervalTime;
     public float maxIntervalTime;
     public float minHeight = 5;
     public float maxHeight = 10;
+    public float xMin;
+    public float xMax;
     public float minSpeed;
     public float maxSpeed;
     public float screenShake = 0.5f;
@@ -66,7 +68,8 @@ public class FallingTimingTrigger : MonoBehaviour {
         while (playerInCollider) {
             float time = Random.Range(minIntervalTime, maxIntervalTime);
             yield return new WaitForSeconds(time);
-            GameObject gObj = Instantiate(prefab);
+            int index = Random.Range(0, prefabs.Count - 1);
+            GameObject gObj = Instantiate(prefabs[index]);
 
             FallingObjectInstantiate fallingObject = gObj.GetComponent<FallingObjectInstantiate>();
             //Debug.Log("setting screen shake to " + screenShake);
@@ -74,7 +77,8 @@ public class FallingTimingTrigger : MonoBehaviour {
 
             instantiatedPrefabs.Add(gObj);
             float height = Random.Range(minHeight, maxHeight);
-            gObj.transform.position = playerPosition + new Vector2(0, height);
+            float x = Random.Range(xMin, xMax);
+            gObj.transform.position = playerPosition + new Vector2(x, height);
             Rigidbody2D rb = gObj.GetComponent<Rigidbody2D>();
             float speed = Random.Range(minSpeed, maxSpeed);
             rb.velocity = new Vector2(0, speed);

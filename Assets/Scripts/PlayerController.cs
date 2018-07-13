@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour {
     {
         bool grounded = false;
         foreach (GroundDetector detector in this.groundDetectors) {
-            grounded = grounded || detector.RaycastHitsGround();
+            grounded = grounded || detector.RaycastHitsGroundSignPlatform();
         }
         return grounded;
     }
