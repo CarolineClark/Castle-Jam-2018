@@ -5,11 +5,12 @@ using UnityEngine;
 public class Pickup : MonoBehaviour {
     public enum PickupType { Flowers };
     public PickupType pickupType;
+    public bool pickupToggle;
     public AudioClip pickupSound;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == Constants.PLAYER_TAG) {
+        if (other.tag == Constants.PLAYER_TAG && pickupToggle) {
             SoundManager.instance.PlaySingle(pickupSound);
             gameObject.SetActive(false);
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
