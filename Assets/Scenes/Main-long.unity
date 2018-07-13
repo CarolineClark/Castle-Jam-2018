@@ -4134,6 +4134,11 @@ Prefab:
       propertyPath: jumpSound2
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 95785779909868888, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: de9903e3c21284f6c9862f3680af66f5, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
   m_IsPrefabParent: 0
