@@ -72,8 +72,14 @@ public class PlayerController : MonoBehaviour {
 
         if (startFallenDown) {
             animator.Play(GET_UP_ANIM_STATE);
-            // TODO freeze input until animation completes
+            freezeInput = true;
         }
+    }
+
+    // This function is called by an animation event in PlayerGetUp.anim
+    // It is used to reactivate input after the player gets up off the floor.
+    public void OnPlayerGetUpComplete(AnimationEvent ev) {
+        freezeInput = false;
     }
 
     private GroundDetector findGroundDetectorByName(string childName) {
