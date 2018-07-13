@@ -143,9 +143,13 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool(GROUNDED_ANIM, grounded);
 
         if (yspeed < -50) {
-            Debug.Log("death by falling");
-            SoundManager.instance.PlaySingle(deathByFallingSound);
-            Kill();
+            bool alreadyDying = animator.GetBool(DEAD_ANIM);
+            if (!alreadyDying)
+            {
+                Debug.Log("death by falling");
+                SoundManager.instance.PlaySingle(deathByFallingSound);
+                Kill();
+            }
         }
         surprise.SetActive(isSurprised);
         animator.SetBool(SURPRISED_ANIM, isSurprised);
