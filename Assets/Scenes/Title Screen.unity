@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 421442232}
   - component: {fileID: 421442235}
   - component: {fileID: 421442233}
+  - component: {fileID: 421442234}
   m_Layer: 5
   m_Name: PlayBtn
   m_TagString: Untagged
@@ -269,6 +270,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &421442234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 421442231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137c5769cb90943708334247c495b778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &421442235
 CanvasRenderer:
   m_ObjectHideFlags: 0
