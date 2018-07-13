@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
     private const string HELD_FLOWERS_OBJECT_NAME = "Held Flowers";
     private GameObject heldFlowers;
     private Dictionary<Pickup.PickupType, int> inventory = new Dictionary<Pickup.PickupType, int>();
-    private int numOfFramesGracePeriod = 6;
+    private int numOfFramesGracePeriod = 8;
     private List<GroundDetector> groundDetectors = new List<GroundDetector>();
     private string groundDetectorLeft = "Sensor-left";
     private string groundDetectorMiddle = "Sensor-middle";
