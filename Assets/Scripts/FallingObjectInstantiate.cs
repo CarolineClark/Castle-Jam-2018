@@ -10,6 +10,8 @@ public class FallingObjectInstantiate : MonoBehaviour
     private List<GroundDetector> groundDetectors = new List<GroundDetector>();
     private string groundDetectorLeft = "Sensor-left";
     private string groundDetectorRight = "Sensor-right";
+    private bool shookCamera = false;
+    private bool hasHitGround = false;
 
     private void Start()
     {
@@ -25,7 +27,7 @@ public class FallingObjectInstantiate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Moving() && collision.tag == Constants.PLAYER_TAG)
+        if (collision.tag == Constants.PLAYER_TAG && !hasHitGround)
         {
             EventManager.TriggerEvent(Constants.FALLING_OBJECT_HIT_EVENT);
         }
@@ -34,7 +36,10 @@ public class FallingObjectInstantiate : MonoBehaviour
     private void FixedUpdate()
     {
         if (isGrounded()) {
-            Debug.Log("shake!!! " + screenShake);
+            hasHitGround = true;
+        }
+        if (isGrounded() && !shookCamera) {
+            shookCamera = true;
             CameraController.Shake(screenShake);
         }
     }
@@ -51,7 +56,6 @@ public class FallingObjectInstantiate : MonoBehaviour
         {
             grounded = grounded || detector.RaycastHitsGround();
         }
-        Debug.Log("grounded = " + grounded);
         return grounded;
     }
 }

@@ -25,4 +25,6 @@ public class Constants
     public static int GROUND_LAYER = 9;
 
     public static string RESTART_GAME = "Restart game";
+
+    public static string STOP_SIGNS_FALLING = "StopSignsFalling";
 }

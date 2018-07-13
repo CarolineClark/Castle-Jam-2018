@@ -184,7 +184,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478425634520644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4634414, y: 0.6585484, z: 0}
+  m_LocalPosition: {x: -2.35, y: 3.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4642192119824750}
@@ -282,7 +282,7 @@ MonoBehaviour:
   footstepSound1: {fileID: 8300000, guid: 1a4949192c8b04db58120f1e6ed35c12, type: 3}
   footstepSound2: {fileID: 8300000, guid: d429d3f8fb6c84d29a30f8d3c3e992ab, type: 3}
   footstepSound3: {fileID: 8300000, guid: e7f0fc235b2244f888c12963331d796a, type: 3}
-  runningSpeed: 7
+  runningSpeed: 12
 --- !u!114 &114251229095129248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpBuffer: 1.3
-  layerMask: 512
+  layerMask: 1536
   maxAngle: 60
 --- !u!114 &114552559465430238
 MonoBehaviour:
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpBuffer: 1.3
-  layerMask: 512
+  layerMask: 1536
   maxAngle: 60
 --- !u!114 &114941043776746680
 MonoBehaviour:
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpBuffer: 1.3
-  layerMask: 512
+  layerMask: 1536
   maxAngle: 60
 --- !u!212 &212212402957408576
 SpriteRenderer:
@@ -359,7 +359,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ebd26707655d04ee5b9820c7ac5c8065, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

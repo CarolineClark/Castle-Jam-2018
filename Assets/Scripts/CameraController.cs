@@ -23,12 +23,12 @@ public class CameraController : MonoBehaviour {
     }
 
     public static void Follow(GameObject obj) {
-        Debug.Log("Camera::Follow::" + obj);
+        //Debug.Log("Camera::Follow::" + obj);
         instance.follow = obj;
     }
 
     public static void StopFollowing(GameObject obj) {
-        Debug.Log("Camera::StopFollowing::" + obj);
+        //Debug.Log("Camera::StopFollowing::" + obj);
         var i = instance;
         if (i.follow == obj) {
             i.follow = null;
@@ -36,16 +36,17 @@ public class CameraController : MonoBehaviour {
     }
 
     public static void Shake(float amount) {
-        Debug.Log("Camera::Shake::"+amount);
+        //Debug.Log("Camera::Shake::"+amount);
         instance.shake = amount;
     }
 
     public static void StopShaking() {
+        Debug.Log("stop shaking");
         Shake(0);
     }
 
     public static void Target(Vector2 pos) {
-        Debug.Log("Camera::Target::" + pos);
+        //Debug.Log("Camera::Target::" + pos);
         instance.target = pos;
     }
 
