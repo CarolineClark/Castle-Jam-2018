@@ -2077,7 +2077,7 @@ GameObject:
   - component: {fileID: 631625451}
   - component: {fileID: 631625450}
   m_Layer: 0
-  m_Name: DinnerInThePark
+  m_Name: DinnerInThePark.
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3976,6 +3976,11 @@ Prefab:
       propertyPath: landJumpSound
       value: 
       objectReference: {fileID: 8300000, guid: 6d5b4894b0a9d41ca9380690647be37a, type: 3}
+    - target: {fileID: 114126505881471926, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: jumpSound2
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
   m_IsPrefabParent: 0
