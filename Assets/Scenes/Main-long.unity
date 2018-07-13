@@ -548,6 +548,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1315481934643746, guid: 5b09880a10d194f2abcdb352d2b3a91e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b09880a10d194f2abcdb352d2b3a91e, type: 2}
   m_IsPrefabParent: 0
@@ -735,6 +739,11 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114174168831358330, guid: 1f1bceadaca7b4407b9532ee83f7d429,
+        type: 2}
+      propertyPath: pickupToggle
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f1bceadaca7b4407b9532ee83f7d429, type: 2}
   m_IsPrefabParent: 0
@@ -748,8 +757,8 @@ GameObject:
   - component: {fileID: 268600010}
   - component: {fileID: 268600011}
   m_Layer: 0
-  m_Name: Tree1 (1)
-  m_TagString: Untagged
+  m_Name: Tree
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1109,8 +1118,8 @@ GameObject:
   - component: {fileID: 356268443}
   - component: {fileID: 356268442}
   m_Layer: 0
-  m_Name: Tree1 (1)
-  m_TagString: Untagged
+  m_Name: Tree
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2113,6 +2122,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &879802623
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4494970059093788, guid: 51a4eb2f920c1418a946871695c97b68, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494970059093788, guid: 51a4eb2f920c1418a946871695c97b68, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494970059093788, guid: 51a4eb2f920c1418a946871695c97b68, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494970059093788, guid: 51a4eb2f920c1418a946871695c97b68, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494970059093788, guid: 51a4eb2f920c1418a946871695c97b68, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494970059093788, guid: 51a4eb2f920c1418a946871695c97b68, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494970059093788, guid: 51a4eb2f920c1418a946871695c97b68, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494970059093788, guid: 51a4eb2f920c1418a946871695c97b68, type: 2}
+      propertyPath: m_RootOrder
+      value: 34
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 51a4eb2f920c1418a946871695c97b68, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &898650850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,8 +2214,8 @@ GameObject:
   - component: {fileID: 905664338}
   - component: {fileID: 905664337}
   m_Layer: 0
-  m_Name: Tree1
-  m_TagString: Untagged
+  m_Name: Tree
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2220,8 +2271,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 905664336}
-  m_LocalRotation: {x: 0, y: 0, z: 0.016492635, w: 0.999864}
-  m_LocalPosition: {x: 92, y: 4.96, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.016492635, w: 0.999864}
+  m_LocalPosition: {x: 104.24, y: 4.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3521,8 +3572,8 @@ GameObject:
   - component: {fileID: 1257519166}
   - component: {fileID: 1257519167}
   m_Layer: 0
-  m_Name: Tree1 (3)
-  m_TagString: Untagged
+  m_Name: Tree
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4004,6 +4055,74 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ddc50c83a222143379e8e29d0bfe35ef, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1429412503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1429412506}
+  - component: {fileID: 1429412505}
+  - component: {fileID: 1429412504}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1429412504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429412503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e92432d74c634d9daa55ec9274f608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AliveTree: {fileID: 21300000, guid: d8eb87b3f3e634d6a9659a942b2ed3c0, type: 3}
+  DeadTree: {fileID: 21300000, guid: f206a68d98eb8417ea3905110d951ae0, type: 3}
+--- !u!61 &1429412505
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429412503}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -14.035696, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.33, y: 6.99}
+    newSize: {x: 6.33, y: 6.99}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.1925774, y: 10}
+  m_EdgeRadius: 0
+--- !u!4 &1429412506
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429412503}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 78.96, y: 4.82, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 35
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1579991928
 GameObject:
   m_ObjectHideFlags: 0
@@ -4248,8 +4367,8 @@ GameObject:
   - component: {fileID: 1686540082}
   - component: {fileID: 1686540083}
   m_Layer: 0
-  m_Name: Tree1 (2)
-  m_TagString: Untagged
+  m_Name: Tree
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4394,8 +4513,8 @@ GameObject:
   - component: {fileID: 1699308210}
   - component: {fileID: 1699308209}
   m_Layer: 0
-  m_Name: Tree1 (2)
-  m_TagString: Untagged
+  m_Name: Tree
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4451,13 +4570,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1699308208}
-  m_LocalRotation: {x: -0, y: -0, z: -0.049118172, w: 0.998793}
-  m_LocalPosition: {x: 83.17, y: 5.13, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.021404156, w: 0.99977094}
+  m_LocalPosition: {x: 83.19, y: 4.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 32
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5.631}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.453}
 --- !u!1 &1700701953
 GameObject:
   m_ObjectHideFlags: 0
@@ -4666,7 +4785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed07287aee2d4d4a9cf5fb0ee0d7a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leavingSceneName: Main
+  leavingSceneName: Main-long
   sceneToGoTo: RocksFalling
 --- !u!61 &1760242904
 BoxCollider2D:
