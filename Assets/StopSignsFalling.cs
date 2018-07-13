@@ -13,6 +13,7 @@ public class StopSignsFalling : MonoBehaviour {
             Hashtable h = new Hashtable();
             h.Add(Constants.SET_PLAYER_SPEED, 7.0f);
             EventManager.TriggerEvent(Constants.SET_PLAYER_SPEED, h);
+            EventManager.TriggerEvent(Constants.STORMY_SKY_TO_GREY);
         }
     }
 }

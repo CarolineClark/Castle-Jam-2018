@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
     private bool groundedInPrevFrame = true;
 
     private static float EPSILON = 0.01f;
+    private float timeCounter;
 
     private void ResetInventory()
     {
@@ -80,8 +81,18 @@ public class PlayerController : MonoBehaviour {
 
     private void SetPlayerSpeed(Hashtable h) {
         if (h.ContainsKey(Constants.SET_PLAYER_SPEED)) {
-            runningSpeed = (float)h[Constants.SET_PLAYER_SPEED];
+            timeCounter = 0f;
+            StartCoroutine(AdjustPlayerSpeed(runningSpeed, (float)h[Constants.SET_PLAYER_SPEED], 15f));
         }
+    }
+
+    private IEnumerator AdjustPlayerSpeed(float startPlayerSpeed, float endPlayerSpeed, float floatTimeTransition) {
+        while (timeCounter < floatTimeTransition) {
+            timeCounter += Time.deltaTime;
+            runningSpeed = Mathf.Lerp(startPlayerSpeed, endPlayerSpeed, timeCounter / floatTimeTransition);
+            yield return new WaitForFixedUpdate();
+        }
+        yield return new WaitForFixedUpdate();
     }
 
     // This function is called by an animation event in PlayerGetUp.anim
