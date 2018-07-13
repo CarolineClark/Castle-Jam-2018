@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
     public AudioClip footstepSound3;
     public AudioClip jumpSound;
     public AudioClip landJumpSound;
+    public AudioClip deathByFallingSound;
+    public AudioClip deathByFallingObjectSound;
     public float runningSpeed = 7f;
 
     private float jumpSpeed = 20f;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 
     private int counter = 0;
     private bool groundedWithGracePeriod = false;
+    private bool groundedInPrevFrame = true;
 
     private static float EPSILON = 0.01f;
 
@@ -74,6 +77,13 @@ public class PlayerController : MonoBehaviour {
         float x = 0;
         bool jumping = false;
         bool grounded = isGrounded();
+
+        bool landedThisFrame = !groundedInPrevFrame && grounded;
+        if (landedThisFrame)
+        {
+            SoundManager.instance.PlaySingle(landJumpSound);
+        }
+        groundedInPrevFrame = grounded;
 
         DecideIfGroundedWithGracePeriod(grounded);
 
@@ -134,6 +144,7 @@ public class PlayerController : MonoBehaviour {
 
         if (yspeed < -50) {
             Debug.Log("death by falling");
+            SoundManager.instance.PlaySingle(deathByFallingSound);
             Kill();
         }
         surprise.SetActive(isSurprised);
@@ -156,6 +167,7 @@ public class PlayerController : MonoBehaviour {
 
     private void DeathByFallingObject(Hashtable h) 
     {
+        SoundManager.instance.PlaySingle(deathByFallingObjectSound);
         Kill();
     }
 

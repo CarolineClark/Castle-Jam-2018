@@ -282,8 +282,11 @@ MonoBehaviour:
   footstepSound1: {fileID: 8300000, guid: 1a4949192c8b04db58120f1e6ed35c12, type: 3}
   footstepSound2: {fileID: 8300000, guid: d429d3f8fb6c84d29a30f8d3c3e992ab, type: 3}
   footstepSound3: {fileID: 8300000, guid: e7f0fc235b2244f888c12963331d796a, type: 3}
-  jumpSound: {fileID: 8300000, guid: 878c69a5c82e24c81bc7a0226d06bca1, type: 3}
+  jumpSound: {fileID: 8300000, guid: 44b76853f93a8434aa828f186bf3ef11, type: 3}
   landJumpSound: {fileID: 8300000, guid: 81f50c0fd911c47f78998ef30846b702, type: 3}
+  deathByFallingSound: {fileID: 8300000, guid: 79e0dff65129749798bbceda66987bb7, type: 3}
+  deathByFallingObjectSound: {fileID: 8300000, guid: d16640535fccf47a09bfe20eaadbe6ee,
+    type: 3}
   runningSpeed: 12
 --- !u!114 &114251229095129248
 MonoBehaviour:
