@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747fd544485ad412f86793132c9d4e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenShake: 0
+  screenShake: 1
 --- !u!114 &114340305006954688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,7 +324,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 64
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -378,7 +378,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 581c4bee9a1804b4db72a87b0062b482, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -413,7 +413,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &224043686501554112
 RectTransform:
