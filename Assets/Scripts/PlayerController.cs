@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
     private string groundDetectorLeft = "Sensor-left";
     private string groundDetectorMiddle = "Sensor-middle";
     private string groundDetectorRight = "Sensor-right";
-    private int numberOfSignsToBury = 7;
+    private int numberOfSignsToBury = 20;
 
     private int counter = 0;
     private bool groundedWithGracePeriod = false;
