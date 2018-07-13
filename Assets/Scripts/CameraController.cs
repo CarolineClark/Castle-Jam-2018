@@ -61,6 +61,38 @@ public class CameraController : MonoBehaviour {
     public float shake = 0;
     public float shakeFalloff = .96f;
 
+    float timeCounter;
+    Camera camera;
+    float transitionTime = 2f;
+
+    private void Start()
+    {
+        camera = GetComponent<Camera>();
+        EventManager.StartListening(Constants.CAMERA_CHANGE_VIEWPORT, Zoom);
+    }
+
+    private void Zoom(Hashtable h)
+    {
+        if (h.ContainsKey(Constants.CAMERA_CHANGE_VIEWPORT))
+        {
+            float viewport = (float)h[Constants.CAMERA_CHANGE_VIEWPORT];
+
+            timeCounter = 0f;
+            StartCoroutine(SetCameraOrthographicSize(camera.orthographicSize, viewport, transitionTime));
+        }
+    }
+
+    private IEnumerator SetCameraOrthographicSize(float previous, float next, float floatTimeTransition)
+    {
+        while (timeCounter < floatTimeTransition)
+        {
+            timeCounter += Time.deltaTime;
+            camera.orthographicSize = Mathf.Lerp(previous, next, timeCounter / floatTimeTransition);
+            yield return new WaitForFixedUpdate();
+        }
+        yield return new WaitForFixedUpdate();
+    }
+
     void Update () 
     {
         //Debug.Log("Follow="+follow);

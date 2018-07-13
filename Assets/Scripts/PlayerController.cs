@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip deathByFallingObjectSound;
     public float runningSpeed = 7f;
 
+    private bool keepWalking = false;
     private float jumpSpeed = 20f;
     private float jumpBuffer = 2.0f;
     private float secondJumpSpeed = 15f;
@@ -62,8 +63,11 @@ public class PlayerController : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
         EventManager.StartListening(Constants.FALLING_OBJECT_HIT_EVENT, DeathByFallingObject);
         EventManager.StartListening(Constants.SET_PLAYER_SPEED, SetPlayerSpeed);
+        EventManager.StartListening(Constants.END_GAME, EndGame);
+
         surprise = gameObject.transform.Find(SURPRISE_OBJECT_NAME).gameObject;
         heldFlowers = gameObject.transform.Find(HELD_FLOWERS_OBJECT_NAME).gameObject;
         ResetInventory();
@@ -123,6 +127,9 @@ public class PlayerController : MonoBehaviour {
         if (!freezeInput) {
             x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
             jumping = Input.GetButtonDown(Constants.JUMP);
+        } else if (freezeInput && keepWalking)
+        {
+            x = 0.70f;
         }
 
         bool movingHorizontally = !CloseToZero(x, EPSILON);
@@ -245,5 +252,10 @@ public class PlayerController : MonoBehaviour {
     private bool IsBuriedBySigns() {
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, new Vector2(0, 1), 100.0F, 1 << Constants.SIGN_LAYER);
         return hits.Length > numberOfSignsToBury;
+    }
+
+    private void EndGame(Hashtable h) {
+        freezeInput = true;
+        keepWalking = true;
     }
 }
