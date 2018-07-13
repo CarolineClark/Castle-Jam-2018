@@ -3299,7 +3299,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4355750638390244, guid: 7efb761d814e148139e9cbc0647f30fb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 84.6
+      value: 74.4
       objectReference: {fileID: 0}
     - target: {fileID: 4355750638390244, guid: 7efb761d814e148139e9cbc0647f30fb, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3725,6 +3725,11 @@ Prefab:
       propertyPath: footstepSound3
       value: 
       objectReference: {fileID: 8300000, guid: 32748b961f2c844e09149806c5b8d7ee, type: 3}
+    - target: {fileID: 212293266098750326, guid: 6803313d7dec9480d9fca6b6ba2814db,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 114126505881471926, guid: 6803313d7dec9480d9fca6b6ba2814db,
         type: 2}
       propertyPath: runningSpeed
@@ -3785,6 +3790,36 @@ Prefab:
         type: 2}
       propertyPath: signLocation.x
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1251916212949468, guid: f10f6921c600645a688b9f4423714d80, type: 2}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 212751363570943392, guid: f10f6921c600645a688b9f4423714d80,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212615863579132096, guid: f10f6921c600645a688b9f4423714d80,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013485000479514, guid: f10f6921c600645a688b9f4423714d80, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634616844188182, guid: f10f6921c600645a688b9f4423714d80, type: 2}
+      propertyPath: m_TagString
+      value: Bush
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203612175516826, guid: f10f6921c600645a688b9f4423714d80, type: 2}
+      propertyPath: m_TagString
+      value: Bush
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695434382326874, guid: f10f6921c600645a688b9f4423714d80, type: 2}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f10f6921c600645a688b9f4423714d80, type: 2}
@@ -4312,6 +4347,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AliveTree: {fileID: 21300000, guid: d8eb87b3f3e634d6a9659a942b2ed3c0, type: 3}
   DeadTree: {fileID: 21300000, guid: f206a68d98eb8417ea3905110d951ae0, type: 3}
+  AliveBush: {fileID: 21300000, guid: e741ea91e1ad949f893643a2a0e9a58e, type: 3}
+  DeadBush: {fileID: 21300000, guid: f20d7cd00a7064f65b535df219c7dbf2, type: 3}
 --- !u!61 &1429412505
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4697,7 +4734,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4410961142232494, guid: 58e0059a57124438ba187eee119e831e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -20.72
+      value: -26.23
       objectReference: {fileID: 0}
     - target: {fileID: 4410961142232494, guid: 58e0059a57124438ba187eee119e831e, type: 2}
       propertyPath: m_LocalPosition.y
