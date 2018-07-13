@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public bool startFallenDown = false;
     public bool freezeInput = false;
     public bool isSurprised = false;
+    public bool isSad = false;
     public AudioClip footstepSound1;
     public AudioClip footstepSound2;
     public AudioClip footstepSound3;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour {
     private string GROUNDED_ANIM = "Grounded";
     private string DEAD_ANIM = "Dead";
     private string SURPRISED_ANIM = "Surprised";
+    private string SAD_ANIM = "Sad";
     private string IDLE_ANIM_STATE = "PlayerIdle";
     private string GET_UP_ANIM_STATE = "PlayerGetUp";
     private Vector3 offset = new Vector3(0, 0, -40);
@@ -204,6 +206,8 @@ public class PlayerController : MonoBehaviour {
         surprise.SetActive(isSurprised);
         animator.SetBool(SURPRISED_ANIM, isSurprised);
         heldFlowers.SetActive(inventory[Pickup.PickupType.Flowers] > 0);
+
+        animator.SetBool(SAD_ANIM, isSad);
     }
 
     private bool CloseToZero(float num, float epsilon) {
