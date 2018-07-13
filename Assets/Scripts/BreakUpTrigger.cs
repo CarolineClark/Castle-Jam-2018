@@ -35,7 +35,7 @@ public class BreakUpTrigger : MonoBehaviour {
         player.isSurprised = false;
         Vector3 worldSignLocation = transform.parent.TransformPoint(signLocation);
         CameraController.Target(worldSignLocation);
-        SoundManager.instance.PlaySingle(splitWorldSound);
+        SoundManager.instance.PlayFx(splitWorldSound);
 
         yield return new WaitForSeconds(3);
 

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip footstepSound2;
     public AudioClip footstepSound3;
     public AudioClip jumpSound;
+    public AudioClip jumpSound2;
     public AudioClip landJumpSound;
     public AudioClip deathByFallingSound;
     public AudioClip deathByFallingObjectSound;
@@ -72,8 +73,14 @@ public class PlayerController : MonoBehaviour {
 
         if (startFallenDown) {
             animator.Play(GET_UP_ANIM_STATE);
-            // TODO freeze input until animation completes
+            freezeInput = true;
         }
+    }
+
+    // This function is called by an animation event in PlayerGetUp.anim
+    // It is used to reactivate input after the player gets up off the floor.
+    public void OnPlayerGetUpComplete(AnimationEvent ev) {
+        freezeInput = false;
     }
 
     private GroundDetector findGroundDetectorByName(string childName) {
@@ -89,7 +96,7 @@ public class PlayerController : MonoBehaviour {
         bool landedThisFrame = !groundedInPrevFrame && grounded;
         if (landedThisFrame)
         {
-            SoundManager.instance.PlaySingle(landJumpSound);
+            SoundManager.instance.PlayFx(landJumpSound);
         }
         groundedInPrevFrame = grounded;
 
@@ -131,7 +138,7 @@ public class PlayerController : MonoBehaviour {
         if (grounded && jumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            SoundManager.instance.PlaySingle(jumpSound);
+            SoundManager.instance.PlayFxRandom(jumpSound, jumpSound2);
         }
     }
 
@@ -151,9 +158,13 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool(GROUNDED_ANIM, grounded);
 
         if (yspeed < -50) {
-            Debug.Log("death by falling");
-            SoundManager.instance.PlaySingle(deathByFallingSound);
-            Kill();
+            bool alreadyDying = animator.GetBool(DEAD_ANIM);
+            if (!alreadyDying)
+            {
+                Debug.Log("death by falling");
+                SoundManager.instance.PlayFx(deathByFallingSound);
+                Kill();
+            }
         }
         surprise.SetActive(isSurprised);
         animator.SetBool(SURPRISED_ANIM, isSurprised);
@@ -175,7 +186,7 @@ public class PlayerController : MonoBehaviour {
 
     private void DeathByFallingObject(Hashtable h) 
     {
-        SoundManager.instance.PlaySingle(deathByFallingObjectSound);
+        SoundManager.instance.PlayFx(deathByFallingObjectSound);
         Kill();
     }
 

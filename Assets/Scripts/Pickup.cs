@@ -11,7 +11,7 @@ public class Pickup : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == Constants.PLAYER_TAG && pickupToggle) {
-            SoundManager.instance.PlaySingle(pickupSound);
+            SoundManager.instance.PlayFx(pickupSound);
             gameObject.SetActive(false);
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
             playerController.UpdateInventory(pickupType);   
