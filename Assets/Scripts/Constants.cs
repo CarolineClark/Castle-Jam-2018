@@ -35,4 +35,6 @@ public class Constants
 
     public static string END_GAME = "EndGame";
     public static string CAMERA_CHANGE_VIEWPORT = "CameraChangeViewport";
+
+    public static string FADE_TO_WHITE = "fadetowhite";
 }
