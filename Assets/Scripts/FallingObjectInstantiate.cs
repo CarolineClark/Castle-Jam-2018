@@ -29,6 +29,7 @@ public class FallingObjectInstantiate : MonoBehaviour
     {
         if (collision.tag == Constants.PLAYER_TAG && !hasHitGround)
         {
+            Debug.Log("hit player");
             EventManager.TriggerEvent(Constants.FALLING_OBJECT_HIT_EVENT);
         }
     }
@@ -54,7 +55,7 @@ public class FallingObjectInstantiate : MonoBehaviour
         bool grounded = false;
         foreach (GroundDetector detector in this.groundDetectors)
         {
-            grounded = grounded || detector.RaycastHitsGround();
+            grounded = grounded || detector.RaycastHitsGroundSignPlayer();
         }
         return grounded;
     }
