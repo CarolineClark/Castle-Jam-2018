@@ -300,6 +300,8 @@ MonoBehaviour:
   screenShake: 0
   landingSound1: {fileID: 8300000, guid: a81d1ad3d1c5a494b84d3a206800dc2a, type: 3}
   landingSound2: {fileID: 8300000, guid: e92d2d48fa700446b805e00647ec75af, type: 3}
+  dropShadowPrefab: {fileID: 1680175023381750, guid: 7962e54ed1bf9405db8290d01004f4cf,
+    type: 2}
 --- !u!114 &114888593271752662
 MonoBehaviour:
   m_ObjectHideFlags: 1

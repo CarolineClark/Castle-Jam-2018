@@ -330,9 +330,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747fd544485ad412f86793132c9d4e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenShake: 0
+  screenShake: 1
   landingSound1: {fileID: 8300000, guid: a81d1ad3d1c5a494b84d3a206800dc2a, type: 3}
   landingSound2: {fileID: 8300000, guid: e92d2d48fa700446b805e00647ec75af, type: 3}
+  dropShadowPrefab: {fileID: 1680175023381750, guid: 7962e54ed1bf9405db8290d01004f4cf,
+    type: 2}
 --- !u!114 &114911704170263910
 MonoBehaviour:
   m_ObjectHideFlags: 1

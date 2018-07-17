@@ -8,7 +8,9 @@ public class FallingObjectInstantiate : MonoBehaviour
     public AudioClip landingSound1;
     public AudioClip landingSound2;
     private Rigidbody2D rb;
+    public GameObject dropShadowPrefab;
 
+    private GameObject dropShadow;
     private List<GroundDetector> groundDetectors = new List<GroundDetector>();
     private string groundDetectorLeft = "Sensor-left";
     private string groundDetectorRight = "Sensor-right";
@@ -18,6 +20,7 @@ public class FallingObjectInstantiate : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dropShadow = Instantiate(dropShadowPrefab);
         groundDetectors.Add(findGroundDetectorByName(groundDetectorLeft));
         groundDetectors.Add(findGroundDetectorByName(groundDetectorRight));
     }
@@ -38,13 +41,21 @@ public class FallingObjectInstantiate : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isGrounded()) {
-            hasHitGround = true;
+        bool grounded = IsGrounded();
+        if (!grounded && dropShadow != null) {
+            PlaceDropshadow();
         }
-        if (isGrounded() && !shookCamera) {
+
+        if (grounded) {
+            hasHitGround = true;
+            Destroy(dropShadow);
+            dropShadow = null;
+        }
+        if (grounded && !shookCamera) {
             shookCamera = true;
             CameraController.Shake(screenShake);
             SoundManager.instance.PlaySignCrashRandom(landingSound1, landingSound2);
+            gameObject.layer = Constants.GROUND_LAYER;
         }
     }
 
@@ -53,7 +64,7 @@ public class FallingObjectInstantiate : MonoBehaviour
         return System.Math.Abs(rb.velocity.y) > 0.01f;
     }
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
         bool grounded = false;
         foreach (GroundDetector detector in this.groundDetectors)
@@ -61,5 +72,15 @@ public class FallingObjectInstantiate : MonoBehaviour
             grounded = grounded || detector.RaycastHitsGroundSignPlayer();
         }
         return grounded;
+    }
+
+    private void PlaceDropshadow() {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), 100.0F, 1<< Constants.GROUND_LAYER);
+        if (hit.collider != null) {
+            dropShadow.SetActive(true);
+            dropShadow.transform.position = transform.position + (hit.distance * new Vector3(0, -1, 0));   
+        } else {
+            dropShadow.SetActive(false);
+        }
     }
 }
