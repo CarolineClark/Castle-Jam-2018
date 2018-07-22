@@ -16,8 +16,10 @@ public class TableFlowerInteraction : MonoBehaviour
         if (other.tag == Constants.PLAYER_TAG)
         {
             PlayerController controller = other.GetComponent<PlayerController>();
-            controller.RemoveFlowers();
-            tableFlowers.GetComponent<SpriteRenderer>().enabled = true;
+            if (controller.HasFlowers()) {
+                controller.RemoveFlowers();
+                tableFlowers.GetComponent<SpriteRenderer>().enabled = true;   
+            }
         }
     }
 }

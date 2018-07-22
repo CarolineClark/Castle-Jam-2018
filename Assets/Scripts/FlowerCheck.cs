@@ -10,30 +10,47 @@ public class FlowerCheck : MonoBehaviour {
 	public Sprite AliveBush;
 	public Sprite DeadBush;
 
-	private void OnTriggerEnter2D(Collider2D other)
-    {
-		object [] gTObj = GameObject.FindGameObjectsWithTag("Tree");
-		foreach (object o in gTObj){
-			GameObject g = (GameObject) o;
-			sprite = g.GetComponent<SpriteRenderer>();
-			if (GameObject.Find("Held Flowers") != null) {
-				sprite.sprite = AliveTree;
-			}
-			if (GameObject.Find("Held Flowers") == null){
-				sprite.sprite = DeadTree;
-			}
-		}
+    private object[] gTObj;
+    private object[] gBObj;
 
-		object [] gBObj = GameObject.FindGameObjectsWithTag("Bush");
-		foreach (object o in gBObj){
-			GameObject g = (GameObject) o;
-			sprite = g.GetComponent<SpriteRenderer>();
-			if (GameObject.Find("Held Flowers") != null) {
-				sprite.sprite = AliveBush;
-			}
-			if (GameObject.Find("Held Flowers") == null){
-				sprite.sprite = DeadBush;
-			}
-		}
+    private void Start()
+    {
+        gTObj = GameObject.FindGameObjectsWithTag("Tree");
+        gBObj = GameObject.FindGameObjectsWithTag("Bush");
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == Constants.PLAYER_TAG) {
+            PlayerController controller = other.GetComponent<PlayerController>();
+
+            foreach (object o in gTObj)
+            {
+                GameObject g = (GameObject)o;
+                sprite = g.GetComponent<SpriteRenderer>();
+                if (controller.HasFlowers())
+                {
+                    sprite.sprite = AliveTree;
+                }
+                else
+                {
+                    sprite.sprite = DeadTree;
+                }
+            }
+
+            foreach (object o in gBObj)
+            {
+                GameObject g = (GameObject)o;
+                sprite = g.GetComponent<SpriteRenderer>();
+                if (controller.HasFlowers())
+                {
+                    sprite.sprite = AliveBush;
+                }
+                else
+                {
+                    sprite.sprite = DeadBush;
+                }
+            }  
+        }
     }
 }

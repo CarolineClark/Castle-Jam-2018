@@ -263,6 +263,11 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("Dropped flowers - You now have " + inventory[Pickup.PickupType.Flowers]);
     }
 
+    public bool HasFlowers()
+    {
+        return inventory[Pickup.PickupType.Flowers] > 0;
+    }
+
     private bool IsBuriedBySigns() {
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, new Vector2(0, 1), 100.0F, 1 << Constants.SIGN_LAYER);
         return hits.Length > numberOfSignsToBury;
