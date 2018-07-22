@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     
     public bool startFallenDown = false;
+    public bool isHappy = false;
     public bool freezeInput = false;
     public bool isSurprised = false;
     public bool isSad = false;
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour {
     private string DEAD_ANIM = "Dead";
     private string SURPRISED_ANIM = "Surprised";
     private string SAD_ANIM = "Sad";
-    private string IDLE_ANIM_STATE = "PlayerIdle";
+    private string HAPPY_ANIM = "Happy";
     private string GET_UP_ANIM_STATE = "PlayerGetUp";
     private Vector3 offset = new Vector3(0, 0, -40);
     private const string SURPRISE_OBJECT_NAME = "Surprise";
@@ -83,6 +84,8 @@ public class PlayerController : MonoBehaviour {
             animator.Play(GET_UP_ANIM_STATE);
             freezeInput = true;
         }
+        animator.SetBool(HAPPY_ANIM, isHappy);
+        animator.SetBool(SAD_ANIM, isSad);
     }
 
     private void SetPlayerSpeed(Hashtable h) {
@@ -208,6 +211,7 @@ public class PlayerController : MonoBehaviour {
         heldFlowers.SetActive(inventory[Pickup.PickupType.Flowers] > 0);
 
         animator.SetBool(SAD_ANIM, isSad);
+        animator.SetBool(HAPPY_ANIM, isHappy);
     }
 
     private bool CloseToZero(float num, float epsilon) {
@@ -251,6 +255,12 @@ public class PlayerController : MonoBehaviour {
     {
         inventory[pickup]++;
         Debug.Log("Picked up " + pickup + " - You now have " + inventory[pickup]);
+    }
+
+    public void RemoveFlowers()
+    {
+        inventory[Pickup.PickupType.Flowers]--;
+        Debug.Log("Dropped flowers - You now have " + inventory[Pickup.PickupType.Flowers]);
     }
 
     private bool IsBuriedBySigns() {

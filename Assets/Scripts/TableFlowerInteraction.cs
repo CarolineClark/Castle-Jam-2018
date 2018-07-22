@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class TableFlowerInteraction : MonoBehaviour
 {
+    GameObject tableFlowers;
+
+    private void Start()
+    {
+        tableFlowers = GameObject.Find("TableFlowers");
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-		if (GameObject.Find("Held Flowers") != null){
-			GameObject player = GameObject.Find("Held Flowers");
-			player.GetComponent<SpriteRenderer>().enabled = false;
-			GameObject tableFlowers = GameObject.Find("TableFlowers");
-			tableFlowers.GetComponent<SpriteRenderer>().enabled = true;
-		}
+        if (other.tag == Constants.PLAYER_TAG)
+        {
+            PlayerController controller = other.GetComponent<PlayerController>();
+            controller.RemoveFlowers();
+            tableFlowers.GetComponent<SpriteRenderer>().enabled = true;
+        }
     }
 }
