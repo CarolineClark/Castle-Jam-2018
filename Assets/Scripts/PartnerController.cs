@@ -26,16 +26,20 @@ public class PartnerFollowPlayer : MonoBehaviour {
         playerRb = player.GetComponent<Rigidbody2D>();
 	}
 	
-	void Update () {
-        Vector2 pos = transform.position - player.transform.position;
-        if (pos.magnitude > maxMagnitude2) {
-            Running(runningSpeed2);
-        } else if (pos.magnitude > maxMagnitude1) {
-            Running(runningSpeed1);
-        }
+	//void Update () {
+ //       Vector2 pos = transform.position - player.transform.position;
+ //       if (pos.magnitude > maxMagnitude2) {
+ //           Running(runningSpeed2);
+ //       } else if (pos.magnitude > maxMagnitude1) {
+ //           Running(runningSpeed1);
+ //       }
 
-        animator.SetBool(RUNNING_ANIM_FLAG, (rb.velocity.magnitude > EPISLON));
-	}
+ //       animator.SetBool(RUNNING_ANIM_FLAG, (rb.velocity.magnitude > EPISLON));
+	//}
+
+    public void RunRight() {
+        StartCoroutine(StepRight(runningSpeed1));
+    }
 
     private void Running(float speed) {
         if (transform.position.x > player.transform.position.x)
@@ -57,14 +61,20 @@ public class PartnerFollowPlayer : MonoBehaviour {
         rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
     }
 
-    void StepLeft(float speed) {
+    private void StepLeft(float speed) {
         spriteRenderer.flipX = true;
         rb.velocity = new Vector2(-speed, rb.velocity.y);
     }
 
-    void StepRight(float speed)
+    private IEnumerator StepRight(float speed)
     {
-        spriteRenderer.flipX = false;
-        rb.velocity = new Vector2(speed, rb.velocity.y);
+        float time = 0f;
+        while (time < 5f) {
+            time += Time.deltaTime;
+            spriteRenderer.flipX = false;
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+            animator.SetBool(RUNNING_ANIM_FLAG, (rb.velocity.magnitude > EPISLON));
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

@@ -12,6 +12,12 @@ public class BreakUpTrigger : MonoBehaviour {
     public AudioClip splitWorldSound;
 
     private PlayerController player;
+    private PartnerFollowPlayer partner;
+
+    private void Start()
+    {
+        partner = GameObject.FindWithTag(Constants.PARTNER_TAG).GetComponent<PartnerFollowPlayer>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,6 +39,8 @@ public class BreakUpTrigger : MonoBehaviour {
 
         // Reveal the 'I don't love you' sign
         player.isSurprised = false;
+        player.isSad = true;
+        partner.RunRight();
         Vector3 worldSignLocation = transform.parent.TransformPoint(signLocation);
         CameraController.Target(worldSignLocation);
         SoundManager.instance.PlayFx(splitWorldSound);
@@ -41,6 +49,7 @@ public class BreakUpTrigger : MonoBehaviour {
 
         // Make the fissure visible
         CameraController.Shake(shakeCameraAmount);
+        player.isSad = false;
         player.isSurprised = true;
         fissureLeft.SetActive(true);
         fissureRight.SetActive(true);

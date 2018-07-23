@@ -13,6 +13,7 @@ public class Constants
     public static string PLAYER_ANIMATION_SPEED = "speed";
 
     public static string PLAYER_TAG = "Player";
+    public static string PARTNER_TAG = "Partner";
 
     // events
     public static string CHECKPOINT_EVENT_KEY = "CheckpointEvent";

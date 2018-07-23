@@ -2586,7 +2586,7 @@ GameObject:
   - component: {fileID: 901793628}
   m_Layer: 12
   m_Name: Partner
-  m_TagString: Untagged
+  m_TagString: Partner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2635,7 +2635,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 901793622}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72dd5ab5333ba4fbd856d1e11d28444e, type: 3}
   m_Name: 
@@ -2647,7 +2647,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 901793622}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 136.7, y: 2.5, z: -0.453125}
+  m_LocalPosition: {x: 136.7, y: 2.13, z: -0.453125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4414,6 +4414,16 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61385471703305592, guid: f10f6921c600645a688b9f4423714d80,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 1.2852778
+      objectReference: {fileID: 0}
+    - target: {fileID: 61385471703305592, guid: f10f6921c600645a688b9f4423714d80,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 2.118733
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f10f6921c600645a688b9f4423714d80, type: 2}
