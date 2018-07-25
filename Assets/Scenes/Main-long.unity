@@ -2579,11 +2579,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 901793626}
-  - component: {fileID: 901793625}
   - component: {fileID: 901793624}
   - component: {fileID: 901793623}
   - component: {fileID: 901793627}
   - component: {fileID: 901793628}
+  - component: {fileID: 901793625}
   m_Layer: 12
   m_Name: Partner
   m_TagString: Partner

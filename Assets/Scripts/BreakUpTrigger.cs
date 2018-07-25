@@ -12,11 +12,11 @@ public class BreakUpTrigger : MonoBehaviour {
     public AudioClip splitWorldSound;
 
     private PlayerController player;
-    private PartnerFollowPlayer partner;
+    private PartnerController partner;
 
     private void Start()
     {
-        partner = GameObject.FindWithTag(Constants.PARTNER_TAG).GetComponent<PartnerFollowPlayer>();
+        partner = GameObject.FindWithTag(Constants.PARTNER_TAG).GetComponent<PartnerController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
