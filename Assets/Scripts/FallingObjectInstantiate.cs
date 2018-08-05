@@ -11,24 +11,28 @@ public class FallingObjectInstantiate : MonoBehaviour
     public GameObject dropShadowPrefab;
 
     private GameObject dropShadow;
-    private List<GroundDetector> groundDetectors = new List<GroundDetector>();
-    private string groundDetectorLeft = "Sensor-left";
-    private string groundDetectorRight = "Sensor-right";
+    private GroundDetector groundDetector;
     private bool shookCamera = false;
     private bool hasHitGround = false;
 
+    private SpriteRenderer spriteRenderer;
+
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         dropShadow = Instantiate(dropShadowPrefab);
-        groundDetectors.Add(findGroundDetectorByName(groundDetectorLeft));
-        groundDetectors.Add(findGroundDetectorByName(groundDetectorRight));
+        //dropShadow.transform.parent = transform;
+
+        groundDetector = transform.Find("Ground Detector").gameObject.GetComponent<GroundDetector>();
+        //groundDetectors.Add(findGroundDetectorByName(groundDetectorLeft));
+        //groundDetectors.Add(findGroundDetectorByName(groundDetectorRight));
     }
 
-    private GroundDetector findGroundDetectorByName(string childName)
-    {
-        return transform.Find(childName).gameObject.GetComponent<GroundDetector>();
-    }
+    //private GroundDetector findGroundDetectorByName(string childName)
+    //{
+    //    return transform.Find(childName).gameObject.GetComponent<GroundDetector>();
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,21 +70,25 @@ public class FallingObjectInstantiate : MonoBehaviour
 
     private bool IsGrounded()
     {
-        bool grounded = false;
-        foreach (GroundDetector detector in this.groundDetectors)
-        {
-            grounded = grounded || detector.RaycastHitsGroundSignPlayer();
-        }
-        return grounded;
+        return groundDetector.IsTouchingGroundSignPlayer();
+        //bool grounded = false;
+        //foreach (GroundDetector detector in this.groundDetectors)
+        //{
+        //    grounded = grounded || detector.RaycastHitsGroundSignPlayer();
+        //}
+        //return grounded;
     }
 
     private void PlaceDropshadow() {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), 100.0F, 1<< Constants.GROUND_LAYER);
+        //float y = transform.localScale.y / spriteRenderer.sprite.bounds.size.y;
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y - 2f);
+        RaycastHit2D hit = Physics2D.Raycast(pos, new Vector2(0, -1), 100.0F, Constants.GROUND_SIGN_LAYER_MASK);
         if (hit.collider != null) {
             dropShadow.SetActive(true);
-            dropShadow.transform.position = transform.position + (hit.distance * new Vector3(0, -1, 0));   
+            dropShadow.transform.position = transform.position + (hit.distance * new Vector3(0, -1, 0) - new Vector3(0, 2f, 0));   
         } else {
             dropShadow.SetActive(false);
+            Debug.Log("no point");
         }
     }
 }

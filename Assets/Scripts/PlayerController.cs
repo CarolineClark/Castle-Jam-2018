@@ -21,8 +21,6 @@ public class PlayerController : MonoBehaviour {
 
     private bool keepWalking = false;
     private float jumpSpeed = 20f;
-    private float jumpBuffer = 2.0f;
-    private float secondJumpSpeed = 15f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -40,10 +38,11 @@ public class PlayerController : MonoBehaviour {
     private GameObject heldFlowers;
     private Dictionary<Pickup.PickupType, int> inventory = new Dictionary<Pickup.PickupType, int>();
     private int numOfFramesGracePeriod = 8;
-    private List<GroundDetector> groundDetectors = new List<GroundDetector>();
+    private GroundDetector groundDetector;
     private string groundDetectorLeft = "Sensor-left";
     private string groundDetectorMiddle = "Sensor-middle";
     private string groundDetectorRight = "Sensor-right";
+    private string groundDetectorName = "Ground Detector";
     private int numberOfSignsToBury = 30;
 
     private int counter = 0;
@@ -76,9 +75,7 @@ public class PlayerController : MonoBehaviour {
         ResetInventory();
         CameraController.Follow(gameObject);
 
-        groundDetectors.Add(findGroundDetectorByName(groundDetectorLeft));
-        groundDetectors.Add(findGroundDetectorByName(groundDetectorMiddle));
-        groundDetectors.Add(findGroundDetectorByName(groundDetectorRight));
+        groundDetector = findGroundDetectorByName(groundDetectorName);
 
         if (startFallenDown) {
             animator.Play(GET_UP_ANIM_STATE);
@@ -220,11 +217,12 @@ public class PlayerController : MonoBehaviour {
 
     private bool isGrounded() 
     {
-        bool grounded = false;
-        foreach (GroundDetector detector in this.groundDetectors) {
-            grounded = grounded || detector.RaycastHitsGroundSignPlatform();
-        }
-        return grounded;
+        return groundDetector.IsTouchingGroundSignPlatform();
+        //bool grounded = false;
+        //foreach (GroundDetector detector in this.groundDetectors) {
+        //    grounded = grounded || detector.RaycastHitsGroundSignPlatform();
+        //}
+        //return grounded;
     }
 
     private void DeathByFallingObject(Hashtable h) 

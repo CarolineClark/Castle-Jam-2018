@@ -45,9 +45,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!1 &1458587018670924
+--- !u!1 &1240749524447434
 GameObject:
   m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4232399031661128}
+  - component: {fileID: 114487141068614796}
+  m_Layer: 8
+  m_Name: Ground Detector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1458587018670924
+GameObject:
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -83,7 +99,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1812268683731866
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -99,7 +115,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1919804266372030
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -119,10 +135,26 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1812268683731866}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.79, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.33000183, y: -0.5799999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+  m_Father: {fileID: 4232399031661128}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4232399031661128
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240749524447434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4753200420277340}
+  - {fileID: 4596949471059302}
+  - {fileID: 4232205929481668}
   m_Father: {fileID: 4992337510460100}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -133,11 +165,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1919804266372030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019, y: -0.01, z: 0}
+  m_LocalPosition: {x: -0.11000061, y: -0.55999947, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4992337510460100}
-  m_RootOrder: 3
+  m_Father: {fileID: 4232399031661128}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4642192119824750
 Transform:
@@ -159,11 +191,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1458587018670924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.626, y: -0.019, z: 0}
+  m_LocalPosition: {x: 0.27000427, y: -0.5100002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4992337510460100}
-  m_RootOrder: 4
+  m_Father: {fileID: 4232399031661128}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4893544163629878
 Transform:
@@ -185,14 +217,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478425634520644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.34, y: 1.22, z: 0}
+  m_LocalPosition: {x: -157.11, y: -23.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4642192119824750}
   - {fileID: 4893544163629878}
-  - {fileID: 4232205929481668}
-  - {fileID: 4596949471059302}
-  - {fileID: 4753200420277340}
+  - {fileID: 4232399031661128}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -228,8 +258,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027388036, y: 0.059355736}
-  m_Size: {x: 0.9325801, y: 2.0418468}
+  m_Offset: {x: 0.032478333, y: -0.0047979355}
+  m_Size: {x: 0.6759796, y: 1.7253551}
   m_Direction: 0
 --- !u!95 &95315527974542030
 Animator:
@@ -296,9 +326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2cacd464d4e4ca9bf7e43e2d52889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startFallenDown: 0
+  startFallenDown: 1
+  isHappy: 0
   freezeInput: 0
   isSurprised: 0
+  isSad: 0
   footstepSound1: {fileID: 8300000, guid: 1a4949192c8b04db58120f1e6ed35c12, type: 3}
   footstepSound2: {fileID: 8300000, guid: d429d3f8fb6c84d29a30f8d3c3e992ab, type: 3}
   footstepSound3: {fileID: 8300000, guid: e7f0fc235b2244f888c12963331d796a, type: 3}
@@ -308,7 +340,7 @@ MonoBehaviour:
   deathByFallingSound: {fileID: 8300000, guid: 79e0dff65129749798bbceda66987bb7, type: 3}
   deathByFallingObjectSound: {fileID: 8300000, guid: d16640535fccf47a09bfe20eaadbe6ee,
     type: 3}
-  runningSpeed: 12
+  runningSpeed: 14
 --- !u!114 &114251229095129248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,8 +352,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a94109ffb8f4ba7b3fcba175782d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpBuffer: 1.3
+  jumpBuffer: 0.7
   maxAngle: 60
+--- !u!114 &114487141068614796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240749524447434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a3faf520aea48b9bc2e5652f7aee86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  names:
+  - Sensor-left
+  - Sensor-right
+  - Sensor-middle
 --- !u!114 &114552559465430238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a94109ffb8f4ba7b3fcba175782d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpBuffer: 1.3
+  jumpBuffer: 0.7
   maxAngle: 60
 --- !u!114 &114941043776746680
 MonoBehaviour:
@@ -346,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a94109ffb8f4ba7b3fcba175782d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpBuffer: 1.3
+  jumpBuffer: 0.7
   maxAngle: 60
 --- !u!212 &212212402957408576
 SpriteRenderer:

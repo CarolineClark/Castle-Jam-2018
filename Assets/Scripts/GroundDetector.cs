@@ -4,52 +4,57 @@ using UnityEngine;
 
 public class GroundDetector : MonoBehaviour {
 
-	public float jumpBuffer = 1.3f;
-    public int maxAngle = 60;
-
-    private int groundLayerMask = 1 << Constants.GROUND_LAYER;
-    private int signLayerMask = 1 << Constants.SIGN_LAYER;
-    private int platformLayerMask = 1 << Constants.PLATFORM_LAYER;
-    private int playerLayerMask = 1 << Constants.PLAYER_LAYER;
-    private int groundSignLayerMask;
-    private int groundSignPlatformMask;
-    private int groundSignLayerPlayerMask;
+    public List<string> names;
+    private List<GroundDetectorSingle> groundDetectors = new List<GroundDetectorSingle>();
 
     private void Start()
     {
-        groundSignLayerMask = groundLayerMask | signLayerMask;
-        groundSignPlatformMask = groundLayerMask | signLayerMask | platformLayerMask;
-        groundSignLayerPlayerMask = groundSignLayerMask | playerLayerMask;
-    }
-
-    public bool RaycastHitsGround() {
-        return RaycastHitsLayerMask(groundLayerMask);
-    }
-
-    public bool RaycastHitsGroundSign()
-    {
-        return RaycastHitsLayerMask(groundSignLayerMask);
-    }
-
-    public bool RaycastHitsGroundSignPlayer()
-    {
-        return RaycastHitsLayerMask(groundSignLayerPlayerMask);
-    }
-
-    public bool RaycastHitsGroundSignPlatform()
-    {
-        return RaycastHitsLayerMask(groundSignPlatformMask);
-    }
-
-    private bool RaycastHitsLayerMask(int layerMask)
-    {
-        //Debug.Log(finalmask);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), jumpBuffer, layerMask);
-        if (hit.collider != null)
-        {
-            float angle = Vector2.Angle(hit.normal, new Vector2(0, 1));
-            return (Mathf.Abs(angle) < maxAngle);
+        foreach (string n in names) {
+            groundDetectors.Add(findGroundDetectorByName(n));
         }
-        return false;
+    }
+
+    private GroundDetectorSingle findGroundDetectorByName(string childName)
+    {
+        return transform.Find(childName).gameObject.GetComponent<GroundDetectorSingle>();
+    }
+
+    public bool IsTouchingGroundSignPlatform()
+    {
+        bool grounded = false;
+        foreach (GroundDetectorSingle detector in this.groundDetectors)
+        {
+            grounded = grounded || detector.RaycastHitsGroundSignPlatform();
+        }
+        return grounded;
+    }
+
+    public bool IsTouchingGroundSignPlayer()
+    {
+        bool grounded = false;
+        foreach (GroundDetectorSingle detector in this.groundDetectors)
+        {
+            grounded = grounded || detector.RaycastHitsGroundSignPlayer();
+        }
+        return grounded;
+    }
+
+    public bool IsTouchingGroundSign()
+    {
+        bool grounded = false;
+        foreach (GroundDetectorSingle detector in this.groundDetectors)
+        {
+            grounded = grounded || detector.RaycastHitsGroundSign();
+        }
+        return grounded;
+    }
+
+    public bool CanSeeGroundSignPlatform() {
+        bool canSee = false;
+        foreach (GroundDetectorSingle detector in this.groundDetectors)
+        {
+            canSee = canSee || detector.RaycastDetectsGroundSignPlatform();
+        }
+        return canSee;
     }
 }
