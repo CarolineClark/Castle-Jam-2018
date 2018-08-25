@@ -22,23 +22,14 @@ public class FallingObjectInstantiate : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         dropShadow = Instantiate(dropShadowPrefab);
-        //dropShadow.transform.parent = transform;
-
         groundDetector = transform.Find("Ground Detector").gameObject.GetComponent<GroundDetector>();
-        //groundDetectors.Add(findGroundDetectorByName(groundDetectorLeft));
-        //groundDetectors.Add(findGroundDetectorByName(groundDetectorRight));
     }
-
-    //private GroundDetector findGroundDetectorByName(string childName)
-    //{
-    //    return transform.Find(childName).gameObject.GetComponent<GroundDetector>();
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == Constants.PLAYER_TAG && !hasHitGround)
         {
-            Debug.Log("hit player");
+            //Debug.Log("hit player");
             EventManager.TriggerEvent(Constants.FALLING_OBJECT_HIT_EVENT);
         }
     }
@@ -71,12 +62,6 @@ public class FallingObjectInstantiate : MonoBehaviour
     private bool IsGrounded()
     {
         return groundDetector.IsTouchingGroundSignPlayer();
-        //bool grounded = false;
-        //foreach (GroundDetector detector in this.groundDetectors)
-        //{
-        //    grounded = grounded || detector.RaycastHitsGroundSignPlayer();
-        //}
-        //return grounded;
     }
 
     private void PlaceDropshadow() {
@@ -88,7 +73,6 @@ public class FallingObjectInstantiate : MonoBehaviour
             dropShadow.transform.position = transform.position + (hit.distance * new Vector3(0, -1, 0) - new Vector3(0, 2f, 0));   
         } else {
             dropShadow.SetActive(false);
-            Debug.Log("no point");
         }
     }
 }

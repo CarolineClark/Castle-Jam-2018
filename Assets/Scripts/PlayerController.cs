@@ -218,11 +218,6 @@ public class PlayerController : MonoBehaviour {
     private bool isGrounded() 
     {
         return groundDetector.IsTouchingGroundSignPlatform();
-        //bool grounded = false;
-        //foreach (GroundDetector detector in this.groundDetectors) {
-        //    grounded = grounded || detector.RaycastHitsGroundSignPlatform();
-        //}
-        //return grounded;
     }
 
     private void DeathByFallingObject(Hashtable h) 
