@@ -1,0 +1,10 @@
+﻿{
+    "name": "Tests",
+    "references": [
+        "MyScriptAssembly",
+        "Itween"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}

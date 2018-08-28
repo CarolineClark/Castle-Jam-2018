@@ -4286,6 +4286,10 @@ Prefab:
       propertyPath: isHappy
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1478425634520644, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6803313d7dec9480d9fca6b6ba2814db, type: 2}
   m_IsPrefabParent: 0
