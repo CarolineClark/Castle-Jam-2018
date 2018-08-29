@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
-    
+public class PlayerController : MonoBehaviour
+{
+
     public bool startFallenDown = false;
     public bool isHappy = false;
     public bool freezeInput = false;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip deathByFallingSound;
     public AudioClip deathByFallingObjectSound;
     public float runningSpeed = 7f;
+    public InputWrapper input = new InputWrapper();
 
     private bool keepWalking = false;
     private float jumpSpeed = 20f;
@@ -44,7 +46,6 @@ public class PlayerController : MonoBehaviour {
     private string groundDetectorRight = "Sensor-right";
     private string groundDetectorName = "Ground Detector";
     private int numberOfSignsToBury = 30;
-    private InputWrapper input = new InputWrapper();
 
     private int counter = 0;
     private bool groundedWithGracePeriod = false;

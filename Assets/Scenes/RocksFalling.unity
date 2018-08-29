@@ -9087,15 +9087,20 @@ Prefab:
     - target: {fileID: 61002615768112146, guid: 58e0059a57124438ba187eee119e831e,
         type: 2}
       propertyPath: m_Offset.x
-      value: -2.0577316
+      value: -2.2814102
       objectReference: {fileID: 0}
     - target: {fileID: 61002615768112146, guid: 58e0059a57124438ba187eee119e831e,
         type: 2}
       propertyPath: m_Size.x
-      value: 4.302536
+      value: 2.2541046
       objectReference: {fileID: 0}
     - target: {fileID: 1226603649241024, guid: 58e0059a57124438ba187eee119e831e, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61002615768112146, guid: 58e0059a57124438ba187eee119e831e,
+        type: 2}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputWrapper
 {
-    private IInput inputClass { get; set; }
+    public IInput inputClass { get; set; }
     public InputWrapper()
     {
         inputClass = new InputReal();
