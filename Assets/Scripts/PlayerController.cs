@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour {
     private string groundDetectorRight = "Sensor-right";
     private string groundDetectorName = "Ground Detector";
     private int numberOfSignsToBury = 30;
+    private InputWrapper input = new InputWrapper();
 
     private int counter = 0;
     private bool groundedWithGracePeriod = false;
@@ -127,8 +128,8 @@ public class PlayerController : MonoBehaviour {
         DecideIfGroundedWithGracePeriod(grounded);
 
         if (!freezeInput) {
-            x = Input.GetAxis(Constants.HORIZONTAL_AXIS);
-            jumping = Input.GetButtonDown(Constants.JUMP);
+            x = input.GetAxisHorizontal();
+            jumping = input.Jump();
         } else if (freezeInput && keepWalking)
         {
             x = 0.70f;

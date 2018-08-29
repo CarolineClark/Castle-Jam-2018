@@ -36,7 +36,6 @@ public class RocksFallingSceneTest {
     }
 
     private void CheckpointListener(Hashtable h) {
-        Debug.Log("checkpoint triggered");
         checkpointHit = true;
     }
 }
