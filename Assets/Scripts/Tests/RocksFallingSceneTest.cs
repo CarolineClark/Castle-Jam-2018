@@ -5,18 +5,38 @@ using NUnit.Framework;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class RocksFallingSceneTest { 
-    [SetUp]
-    public void Before()
-    {
-        SceneManager.LoadScene(ConstantsTest.ROCKS_FALLING_SCENE, LoadSceneMode.Single);
+public class RocksFallingSceneTest {
+
+    private bool checkpointHit = false;
+
+    [UnityTest]
+    public IEnumerator CheckPlayerExistsInScene() {
+        LoadScene();
+        IsPlayerPresent();
+        yield return Utils.SkipFrames(1);
     }
 
     [UnityTest]
-    public IEnumerator CheckPlayerFallsThroughCheckpointOnEntry() {
-        yield return null;
+    public IEnumerator CheckPlayerFallsThroughCheckpointOnEntry()
+    {
+        LoadScene();
+        yield return Utils.SkipFrames(1);
+        CheckpointEvent.Listen(CheckpointListener);
+        yield return Utils.SkipFrames(10);
+        Assert.IsTrue(checkpointHit);
+    }
+
+    private void IsPlayerPresent() {
         GameObject player = Utils.FindPlayerGameObject();
         Assert.AreNotEqual(player, null);
-        //CheckpointEvent checkpoint = new CheckpointEvent();
+    }
+
+    private void LoadScene() {
+        SceneManager.LoadScene(Constants.ROCKS_FALLING_SCENE, LoadSceneMode.Single);
+    }
+
+    private void CheckpointListener(Hashtable h) {
+        Debug.Log("checkpoint triggered");
+        checkpointHit = true;
     }
 }

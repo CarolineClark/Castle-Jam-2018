@@ -8,7 +8,7 @@ public class MainSceneTest {
 
     [SetUp]
     public void Before() {
-        SceneManager.LoadScene(ConstantsTest.MAIN_SCENE, LoadSceneMode.Single);
+        SceneManager.LoadScene(Constants.MAIN_SCENE, LoadSceneMode.Single);
     }
 
     [UnityTest]

@@ -1,10 +1,13 @@
-﻿{
+{
     "name": "Tests",
     "references": [
-        "MyScriptAssembly",
-        "Itween"
+        "Itween",
+        "MyScriptAssembly"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
-    ]
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
 }

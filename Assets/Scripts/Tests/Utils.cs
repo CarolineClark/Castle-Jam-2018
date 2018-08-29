@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 public class Utils {
     public static GameObject FindPlayerGameObject()
     {
-        return GameObject.FindGameObjectWithTag(ConstantsTest.PLAYER_TAG);
+        return GameObject.FindGameObjectWithTag(Constants.PLAYER_TAG);
+    }
+
+    public static IEnumerator SkipFrames(int number) {
+        for (int i = 0; i < number; i++) {
+            yield return null;
+        }
     }
 }

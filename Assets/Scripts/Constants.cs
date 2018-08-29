@@ -48,4 +48,8 @@ public class Constants
     public static int GROUND_SIGN_LAYER_MASK = GROUND_LAYER_MASK | SIGN_LAYER_MASK;
     public static int GROUND_SIGN_PLATFORM_MASK = GROUND_SIGN_LAYER_MASK | PLATFORM_LAYER_MASK;
     public static int GROUND_SIGN_PLAYER_MASK = GROUND_SIGN_LAYER_MASK| PLAYER_LAYER_MASK;
+
+    // Scene
+    public static string MAIN_SCENE = "Main-long";
+    public static string ROCKS_FALLING_SCENE = "RocksFalling";
 }
