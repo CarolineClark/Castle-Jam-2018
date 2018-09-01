@@ -30,7 +30,8 @@ public class SpeechbubbleController : MonoBehaviour {
 
     private IEnumerator AnimateText(string textToShow)
     {
-        speechbubbleText.text = textToShow;
+        speechbubbleText.enabled = true;
+        speechbubbleText.text = "";
         for (int i = 0; i < (textToShow.Length + 1); i++)
         {
             speechbubbleText.text = textToShow.Substring(0, i);

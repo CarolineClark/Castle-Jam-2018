@@ -8,7 +8,6 @@ public class DoorController : MonoBehaviour {
     private InputWrapper inputWrapper;
     private GameObject player;
     private Animator animator;
-    private Animation animation;
     private bool playingAnimation = false;
     
 	void Start () {
