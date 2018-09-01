@@ -7,6 +7,7 @@ TagManager:
   - Tree
   - Bush
   - Partner
+  - Monster
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Signs
   - Platform
   - Partner
-  - 
+  - Monster
   - 
   - 
   - 
