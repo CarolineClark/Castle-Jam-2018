@@ -112,8 +112,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private GroundDetector findGroundDetectorByName(string childName) {
-        Debug.Log("finding transform");
-        Debug.Log(transform.Find(childName));
         return transform.Find(childName).gameObject.GetComponent<GroundDetector>();
     }
 
@@ -223,7 +221,6 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded() 
     {
-        Debug.Log(groundDetector);
         return groundDetector.IsTouchingGroundSignPlatform();
     }
 

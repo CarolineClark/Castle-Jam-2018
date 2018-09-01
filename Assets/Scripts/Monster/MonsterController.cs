@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterController : MonoBehaviour {
-    Rigidbody2D rb;
-    GameObject player;
-    SpriteRenderer spriteRenderer;
+    public string text = "Some default text";
+
+    private Rigidbody2D rb;
+    private GameObject player;
+    private SpriteRenderer spriteRenderer;
+    private Text speechbubbleText;
+    private SpriteRenderer speechbubbleSprite;
+
+    private static string SPEECH_BUBBLE_TEXT = "Canvas/SpeechbubbleText"; 
+    private static string SPEECH_BUBBLE_SPRITE = "SpeechbubbleSprite"; 
     private float runningSpeed1 = 7f;
     private float runningSpeed2 = 10f;
     private float maxMagnitude1 = 3f;
@@ -14,10 +22,33 @@ public class MonsterController : MonoBehaviour {
     private float maxY = 3f;
 
 	void Start () {
+        speechbubbleText = transform.Find(SPEECH_BUBBLE_TEXT).GetComponent<Text>();
+        speechbubbleSprite = transform.Find(SPEECH_BUBBLE_SPRITE).GetComponent<SpriteRenderer>();
         player = GameObject.Find(Constants.PLAYER_TAG);
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Start showing text
+        StartCoroutine(ShowText());
 	}
+
+    private IEnumerator ShowText() {
+        while (true) {
+            speechbubbleText.text = text;
+            SetSpeechbubbleTo(true);
+
+            yield return new WaitForSeconds(5);
+
+            SetSpeechbubbleTo(false);
+
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    private void SetSpeechbubbleTo(bool shown) {
+        speechbubbleSprite.enabled = shown;
+        speechbubbleText.enabled = shown;
+    }
 	
     void Update()
     {
