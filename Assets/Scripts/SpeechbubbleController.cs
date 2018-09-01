@@ -8,6 +8,9 @@ public class SpeechbubbleController : MonoBehaviour {
     private Text speechbubbleText;
     private Image speechbubbleImage;
 
+    private const float NORMAL_TYPING_SPEED = .03f;
+    private const float FAST_TYPING_SPEED = .01f;
+
     private static string SPEECH_BUBBLE_TEXT = "Canvas/SpeechbubbleText"; 
     private static string SPEECH_BUBBLE_IMAGE = "Canvas/SpeechbubbleImage"; 
 
@@ -16,13 +19,23 @@ public class SpeechbubbleController : MonoBehaviour {
         speechbubbleImage = transform.Find(SPEECH_BUBBLE_IMAGE).GetComponent<Image>();
 	}
 
-    public void ShowWithText(string s) {
-        speechbubbleText.text = s;
-        SetSpeechbubbleTo(true);
+    public void ShowWithText(string textToShow) {
+        speechbubbleImage.enabled = true;
+        StartCoroutine(AnimateText(textToShow));
     }
 
     public void Hide() {
         SetSpeechbubbleTo(false);
+    }
+
+    private IEnumerator AnimateText(string textToShow)
+    {
+        speechbubbleText.text = textToShow;
+        for (int i = 0; i < (textToShow.Length + 1); i++)
+        {
+            speechbubbleText.text = textToShow.Substring(0, i);
+            yield return new WaitForSeconds(NORMAL_TYPING_SPEED);
+        }
     }
 
     private void SetSpeechbubbleTo(bool shown)
