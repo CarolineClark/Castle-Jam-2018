@@ -10,9 +10,11 @@ public class MonsterController : MonoBehaviour {
     private GameObject player;
     private SpriteRenderer spriteRenderer;
     private Text speechbubbleText;
+    private Image speechbubbleImage;
     private SpriteRenderer speechbubbleSprite;
 
     private static string SPEECH_BUBBLE_TEXT = "Canvas/SpeechbubbleText"; 
+    private static string SPEECH_BUBBLE_IMAGE = "Canvas/SpeechbubbleImage"; 
     private static string SPEECH_BUBBLE_SPRITE = "SpeechbubbleSprite"; 
     private float runningSpeed1 = 7f;
     private float runningSpeed2 = 10f;
@@ -23,7 +25,8 @@ public class MonsterController : MonoBehaviour {
 
 	void Start () {
         speechbubbleText = transform.Find(SPEECH_BUBBLE_TEXT).GetComponent<Text>();
-        speechbubbleSprite = transform.Find(SPEECH_BUBBLE_SPRITE).GetComponent<SpriteRenderer>();
+        speechbubbleImage = transform.Find(SPEECH_BUBBLE_IMAGE).GetComponent<Image>();
+        //speechbubbleSprite = transform.Find(SPEECH_BUBBLE_SPRITE).GetComponent<SpriteRenderer>();
         player = GameObject.Find(Constants.PLAYER_TAG);
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -46,7 +49,7 @@ public class MonsterController : MonoBehaviour {
     }
 
     private void SetSpeechbubbleTo(bool shown) {
-        speechbubbleSprite.enabled = shown;
+        speechbubbleImage.enabled = shown;
         speechbubbleText.enabled = shown;
     }
 	
