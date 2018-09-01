@@ -52,7 +52,15 @@ public class MonsterController : MonoBehaviour {
         speechbubbleImage.enabled = shown;
         speechbubbleText.enabled = shown;
     }
-	
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag.Equals(Constants.PLAYER_TAG)) {
+            // send event? If player is here for 5 seconds, then kill them? Slow them down?
+            Debug.Log("player is close to fear");
+        }
+    }
+
     void Update()
     {
         Vector2 pos = transform.position - player.transform.position;
