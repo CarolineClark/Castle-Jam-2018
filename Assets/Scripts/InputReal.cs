@@ -13,4 +13,8 @@ public class InputReal : IInput
     {
         return Input.GetButtonDown(Constants.JUMP);
     }
+
+    public bool IsDoorKeyPressed() {
+        return Input.GetButtonDown(Constants.FIRE1);
+    }
 }

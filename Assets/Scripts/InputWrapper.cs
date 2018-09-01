@@ -15,6 +15,10 @@ public class InputWrapper
         return inputClass.GetAxisHorizontal();
     }
 
+    public bool IsDoorKeyPressed() {
+        return inputClass.IsDoorKeyPressed();
+    }
+
     public bool Jump()
     {
         return inputClass.Jump();

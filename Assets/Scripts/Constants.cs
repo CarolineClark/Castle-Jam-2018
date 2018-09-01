@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Constants
 {
+    // keys
     public static string HORIZONTAL_AXIS = "Horizontal";
     public static string VERTICAL_AXIS = "Vertical";
+    public static string JUMP = "Jump";
+    public static string FIRE1 = "Fire1";
 
     public static string PLAYER_ANIMATION_LEFT = "left";
     public static string PLAYER_ANIMATION_RIGHT = "right";
@@ -22,8 +25,6 @@ public class Constants
     public static string TEST_RUNNING = "TestRunning";
 
     public static string MAIN_SCENE_NAME = "Main-long";
-
-    public static string JUMP = "Jump";
 
     public static int PLAYER_LAYER = 8;
     public static int GROUND_LAYER = 9;

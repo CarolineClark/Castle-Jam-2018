@@ -23,6 +23,11 @@ public class InputTest : IInput
         return EatList<bool>(jumps, false);
     }
 
+    public bool IsDoorKeyPressed()
+    {
+        return false;
+    }
+
     public void SetRightPressed()
     {
         inputs.Add(RIGHT);

@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
 
     void Start () 
     {
+        Debug.Log("start called");
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
         ResetInventory();
         CameraController.Follow(gameObject);
 
+        Debug.Log("find ground detector by name called");
         groundDetector = findGroundDetectorByName(groundDetectorName);
 
         if (startFallenDown) {
@@ -110,6 +112,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private GroundDetector findGroundDetectorByName(string childName) {
+        Debug.Log("finding transform");
+        Debug.Log(transform.Find(childName));
         return transform.Find(childName).gameObject.GetComponent<GroundDetector>();
     }
 
@@ -219,6 +223,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded() 
     {
+        Debug.Log(groundDetector);
         return groundDetector.IsTouchingGroundSignPlatform();
     }
 

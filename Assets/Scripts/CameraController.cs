@@ -23,12 +23,12 @@ public class CameraController : MonoBehaviour {
     }
 
     public static void Follow(GameObject obj) {
-        //Debug.Log("Camera::Follow::" + obj);
+        Debug.Log("Camera::Follow::" + obj);
         instance.follow = obj;
     }
 
     public static void StopFollowing(GameObject obj) {
-        //Debug.Log("Camera::StopFollowing::" + obj);
+        Debug.Log("Camera::StopFollowing::" + obj);
         var i = instance;
         if (i.follow == obj) {
             i.follow = null;
