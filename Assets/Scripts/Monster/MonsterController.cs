@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MonsterController : MonoBehaviour {
     public string text = "Some default text";
@@ -9,13 +8,10 @@ public class MonsterController : MonoBehaviour {
     private Rigidbody2D rb;
     private GameObject player;
     private SpriteRenderer spriteRenderer;
-    private Text speechbubbleText;
-    private Image speechbubbleImage;
     private SpriteRenderer speechbubbleSprite;
+    private SpeechbubbleController controller;
 
-    private static string SPEECH_BUBBLE_TEXT = "Canvas/SpeechbubbleText"; 
-    private static string SPEECH_BUBBLE_IMAGE = "Canvas/SpeechbubbleImage"; 
-    private static string SPEECH_BUBBLE_SPRITE = "SpeechbubbleSprite"; 
+    private static string SPEECHBUBBLE = "Speechbubble";
     private float runningSpeed1 = 7f;
     private float runningSpeed2 = 10f;
     private float maxMagnitude1 = 3f;
@@ -24,33 +20,24 @@ public class MonsterController : MonoBehaviour {
     private float maxY = 3f;
 
 	void Start () {
-        speechbubbleText = transform.Find(SPEECH_BUBBLE_TEXT).GetComponent<Text>();
-        speechbubbleImage = transform.Find(SPEECH_BUBBLE_IMAGE).GetComponent<Image>();
-        //speechbubbleSprite = transform.Find(SPEECH_BUBBLE_SPRITE).GetComponent<SpriteRenderer>();
+        controller = transform.Find(SPEECHBUBBLE).GetComponent<SpeechbubbleController>();
         player = GameObject.Find(Constants.PLAYER_TAG);
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Start showing text
         StartCoroutine(ShowText());
 	}
 
     private IEnumerator ShowText() {
         while (true) {
-            speechbubbleText.text = text;
-            SetSpeechbubbleTo(true);
+            controller.ShowWithText(text);
 
             yield return new WaitForSeconds(5);
 
-            SetSpeechbubbleTo(false);
+            controller.Hide();
 
             yield return new WaitForSeconds(1);
         }
-    }
-
-    private void SetSpeechbubbleTo(bool shown) {
-        speechbubbleImage.enabled = shown;
-        speechbubbleText.enabled = shown;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
